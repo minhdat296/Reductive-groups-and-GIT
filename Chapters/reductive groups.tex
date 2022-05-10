@@ -124,24 +124,6 @@
                     \begin{proof}
                         
                     \end{proof}
-                \begin{proposition}
-                    Let $S$ be a scheme, let $\varphi, \psi: Y \toto X$ be morphisms of schemes, and suppose that $Z$ is the following pullback of $S$-schemes:
-                        $$
-                            \begin{tikzcd}
-                            	Z & Y \\
-                            	X & {X \x_S X}
-                            	\arrow[from=1-1, to=2-1]
-                            	\arrow["{\Delta_{X/S}}", from=2-1, to=2-2]
-                            	\arrow[from=1-1, to=1-2]
-                            	\arrow["{\varphi \x_S \psi}", from=1-2, to=2-2]
-                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                            \end{tikzcd}
-                        $$
-                    If $X$ is separated over $S$ then $Z$ shall be a closed subscheme of $Y$. 
-                \end{proposition}
-                    \begin{proof}
-                        
-                    \end{proof}
                 \begin{lemma}[A topological criterion for (quasi-)separatedness] \label{lemma: topological_criterion_for_(quasi)_separatedness}
                     
                 \end{lemma}
@@ -155,7 +137,7 @@
                         
                     \end{proof}
                 \begin{proposition}[(Quasi-)separated and quasi-compactness] \label{prop: (quasi)_separatedness_and_quasi_compactness}
-                    
+                    Let $S$ be a scheme, let $X, Y$ be $S$-schemes, and let $f: S' \to S$ be a morphism of schemes. 
                 \end{proposition}
                     \begin{proof}
                         
@@ -179,7 +161,18 @@
                             $$
                         It is not hard to check that this is a pullback square in the category of $S$-schemes, and since closed immersions (respecitvely, quasi-compactness) are preserved by pullbacks (cf. \cite[\href{https://stacks.math.columbia.edu/tag/01JY}{Tag 01JY}]{stacks} and respectively, \cite[\href{https://stacks.math.columbia.edu/tag/01K5}{Tag 01K5}]{stacks}), $e: S \to G$ being a closed immersion implies that $\Delta_{G/S}: G \to G \x_S G$ is also a closed immersion (respectively, quasi-compact). By definition, this means that $G$ is separated (respectively, quasi-separated) over $S$.
                         
-                        Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$. 
+                        Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$ and consider the following pullback square in the category of $S$-schemes again:
+                            $$
+                                \begin{tikzcd}
+                                	G & {G \x_S G} \\
+                                	S & G
+                                	\arrow["{\Delta_{G/S}}", from=1-1, to=1-2]
+                                	\arrow["e", from=2-1, to=2-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow["{m \circ (i \x_S \id_{G/S})}", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        
                     \end{proof}
             
             \subsubsection{Group schemes over fields and algebraic groups}
