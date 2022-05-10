@@ -66,6 +66,37 @@
                 \begin{remark}[Open and closed subgroup schemes] \label{remark: open_and_closed_subgroup_schemes}
                     Because limits commute, should $G$ be a group scheme over a given base scheme $S$ and $\iota: H \hookrightarrow G$ be a monomorphism of $S$-schemes (such as open immersions or closed immersions), then $H$ should be a subgroup $S$-scheme of $G$. One thing that is worth checking is that the identity map $e_G: S \to G$ is a monomorphism and therefore the trivial group $S$-scheme $S$ is a subgroup $S$-scheme of $G$.   
                 \end{remark}
+                \begin{definition}[Actions of group schemes] \label{def: actions_of_group_schemes}
+                    Let $S$ be a scheme, $X$ be an $S$-scheme, and $G$ a group $S$-scheme. An \textbf{left-action}\footnote{Right-actions are defined analogously. We let our dear reader figure this out for themselves.} of $G$ on $X$ over $S$ is thus a morphism of $S$-schemes $\alpha: G \x_S X \to X$ such that the following diagrams commute:
+                        $$
+                            \begin{tikzcd}
+                            	{G \x_S G \x_S X} & {G \x_S X} \\
+                            	{G \x_S X} & X
+                            	\arrow["{m \x_S \id_{X/S}}"', from=1-1, to=2-1]
+                            	\arrow["\alpha", from=2-1, to=2-2]
+                            	\arrow["{\id_{G/S} \x_S \alpha}", from=1-1, to=1-2]
+                            	\arrow["\alpha", from=1-2, to=2-2]
+                            \end{tikzcd}
+                        $$
+                        $$
+                            \begin{tikzcd}
+                            	X \\
+                            	{G \x_S X} & X
+                            	\arrow["\alpha", from=2-1, to=2-2]
+                            	\arrow["{e \x_S \id_{X/S}}"', from=1-1, to=2-1]
+                            	\arrow["{\id_{X/S}}", from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                \end{definition}
+                \begin{definition}[Action groupoids] \label{def: action_groupoids}
+                    Let $S$ be a scheme and let $G$ be a group $S$-scheme which acts on an $S$-scheme $X$ via $\alpha: G \x_S X \to X$. Then, the \textbf{action groupoid} of the $G$-action $\alpha$ shall be the span $\alpha, \pr_2: G \x_S X \toto X$. 
+                \end{definition}
+                \begin{remark}[Action groupoids are internal groupoids]
+                    Definition \ref{def: action_groupoids}, as it stands, does not give us a legitimate groupoid internal to the category of $S$-schemes. This, however, is not hard to check: for any group $S$-scheme $(G, m, e, i)$ acting on an $S$-scheme $X$ via $\alpha: G \x_S X \to X$, simply take the inversion map to be the morphism of $S$-schemes $i \x_S \id_{X/S}: G \x_S X \to G \x_S X$.
+                \end{remark}
+                \begin{convention}[Action groupoids of group schemes] \label{conv: action_groupoids_of_group_schemes}
+                    Usually, the action groupoid of a given group $S$-scheme $G$ is taken to be the one wherein the action $\alpha: G \x_S G \to G$ is the multiplication map.
+                \end{convention}
                 
                 Before we can discuss properties of group schemes, let us take a brief detour and discuss certain relevant properties of diagonals of (morphisms of) schemes, particularly how they pertain to separatedness.
                 \begin{definition}[(Quasi-)separatedness] \label{def: (quasi)_separatedness}
@@ -136,12 +167,15 @@
                     \begin{proof}
                         
                     \end{proof}
-                \begin{proposition}[(Quasi-)separated and quasi-compactness] \label{prop: (quasi)_separatedness_and_quasi_compactness}
-                    Let $S$ be a scheme, let $X, Y$ be $S$-schemes, and let $f: S' \to S$ be a morphism of schemes. 
+                \begin{proposition}[A scheme-theoretic criterion for (quasi)-separatedness] \label{prop: scheme_theoretic_criterion_for_(quasi)_separatedness}
+                    Let $S$ be a scheme, let $X, Y$ be $S$-schemes, and let $f: T \to S$ be a morphism of schemes. Then, the canonically induced morphism $X \x_T Y \to X \x_S Y$ is an immersion which will be closed (respectively, quasi-compact) if $f: T \to S$ is separated (respectively, quasi-separated).  
                 \end{proposition}
                     \begin{proof}
                         
                     \end{proof}
+                \begin{corollary}[Sections are immersions] \label{coro: sections_are_immersions}
+                    Let $f: X \to S$ be a morphism of schemes and $s: S \to X$ be a section thereof, i.e. a morphism such that $f \circ s = \id_S$. Then, $s: S \to X$ shall be an immersion that is closed (respectively, quasi-compact) when $f: X \to S$ is separated (respectively, quasi-separated).
+                \end{corollary}
                 
                 We are now ready to establish a criterion for a given group scheme to be (quasi-)separated.
                 \begin{proposition}[A criterion for (quasi-)separatedness for group schemes] \label{prop: (quasi)_separatedness_criterion_for_group_schemes}
@@ -161,17 +195,22 @@
                             $$
                         It is not hard to check that this is a pullback square in the category of $S$-schemes, and since closed immersions (respecitvely, quasi-compactness) are preserved by pullbacks (cf. \cite[\href{https://stacks.math.columbia.edu/tag/01JY}{Tag 01JY}]{stacks} and respectively, \cite[\href{https://stacks.math.columbia.edu/tag/01K5}{Tag 01K5}]{stacks}), $e: S \to G$ being a closed immersion implies that $\Delta_{G/S}: G \to G \x_S G$ is also a closed immersion (respectively, quasi-compact). By definition, this means that $G$ is separated (respectively, quasi-separated) over $S$.
                         
-                        Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$ and consider the following pullback square in the category of $S$-schemes again:
-                            $$
-                                \begin{tikzcd}
-                                	G & {G \x_S G} \\
-                                	S & G
-                                	\arrow["{\Delta_{G/S}}", from=1-1, to=1-2]
-                                	\arrow["e", from=2-1, to=2-2]
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow["{m \circ (i \x_S \id_{G/S})}", from=1-2, to=2-2]
-                                \end{tikzcd}
-                            $$
+                        Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$. Then, note that because $e: S \to G$ is, by definition, a section of the structural morphism $G \to S$ that defines $G$ as an $S$-scheme, one can apply corollary \ref{coro: sections_are_immersions} directly to see that $e: S \to G$ must be a closed immersion (respectively, quasi-compact).
+                    \end{proof}
+                \begin{proposition}[A flatness criterion for action groupoids of group schemes] \label{prop: flatness_criterion_for_action_groupoids_of_group_schemes}
+                    For some given scheme $S$, suppose that $\psi: T \to G$ is a morphism from a flat $S$-scheme $T$ to a group $S$-scheme $(G, m, e, i)$. Then, the composition $m \circ (\psi \x_S \id_{G/S}): T \x_S G \to G$ is flat as well.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}
+                    The action groupoid of a flat group scheme (cf. convention \ref{conv: action_groupoids_of_group_schemes}) is flat. More generally, if for some fixed base scheme $S$, $G$ is a group $X$-scheme for some $S$-scheme $X$ that is flat over $S$ and acts on $X$ via $\alpha: G \x_S X \to X$ then the associated action groupoid $\alpha, \pr_2: G \x_S X \toto X$ will also be flat.
+                \end{corollary}
+                
+                \begin{proposition}[Differential forms on group schemes] \label{prop: differential_forms_on_group_schemes}
+                    
+                \end{proposition}
+                    \begin{proof}
                         
                     \end{proof}
             
