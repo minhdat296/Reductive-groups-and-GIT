@@ -1,0 +1,189 @@
+\chapter{Reductive group schemes}
+    \section{Algebraic groups}
+        \subsection{Group schemes}
+            \subsubsection{General properties of group schemes}
+                \begin{definition}[Group schemes] \label{def: group_schemes}
+                    A \textbf{group scheme} over a given scheme $S$ is a group object in the category of $S$-schemes. Note that this is a well-defined notion, as the category of $S$-schemes has all finite products.
+                    
+                    In more details, a group scheme over $S$ is an $S$-scheme $G$ equipped with morphisms $m: G \x_S G \to G$, $e: S \to G$, and $i: G \to G$ such that the following diagrams\footnote{The isomorphism in the second diagram is the canonical one and the unnamed arrow in the third diagram is the structural morphism of $G$ over $S$.} commute:
+                        $$
+                            \begin{tikzcd}
+                            	{G \x_S G \x_S G} & {G \x_S G} \\
+                            	{G \x_S G} & G
+                            	\arrow["{\id_{G/S} \x_S m}"', from=1-1, to=2-1]
+                            	\arrow["m", from=2-1, to=2-2]
+                            	\arrow["{m \x_S \id_{G/S}}", from=1-1, to=1-2]
+                            	\arrow["m", from=1-2, to=2-2]
+                            \end{tikzcd}
+                        $$
+                        $$
+                            \begin{tikzcd}
+                            	{G \x_S S} && {S \x_S G} \\
+                            	{G \x_S G} && {G \x_S G} \\
+                            	& G
+                            	\arrow["m"', from=2-1, to=3-2]
+                            	\arrow["{e \x_S \id_{G/S}}", from=1-3, to=2-3]
+                            	\arrow["m", from=2-3, to=3-2]
+                            	\arrow["{\id_{G/S} \x_S e}"', from=1-1, to=2-1]
+                            	\arrow["\cong", from=1-1, to=1-3]
+                            \end{tikzcd}
+                        $$
+                        $$
+                            \begin{tikzcd}
+                            	& G \\
+                            	{G \x_S G} && {G \x_S G} \\
+                            	& S \\
+                            	{G \x_S G} && {G \x_S G} \\
+                            	& G
+                            	\arrow["m", from=4-3, to=5-2]
+                            	\arrow["m"', from=4-1, to=5-2]
+                            	\arrow["{\id_{G/S} \x_S i}"', from=2-1, to=4-1]
+                            	\arrow["{i \x_S \id_{G/S}}", from=2-3, to=4-3]
+                            	\arrow["{\Delta_{G/S}}"', from=1-2, to=2-1]
+                            	\arrow["{\Delta_{G/S}}", from=1-2, to=2-3]
+                            	\arrow["e", from=3-2, to=5-2]
+                            	\arrow[from=1-2, to=3-2]
+                            \end{tikzcd}
+                        $$
+                    As is the case in general categories with enough pullbacks, there is a (non-full) subcategory $\Grp(S) \subset \Sch_{/S}$ spanned by group $S$-schemes and homomorphisms between them, i.e. morphisms $\varphi: (H, m_H, e_H, i_H) \to (G, m_G, e_G, i_G)$ such that the following diagram commutes:
+                        $$
+                            \begin{tikzcd}
+                            	{H \x_S H} & {G \x_S G} & {} \\
+                            	H & G
+                            	\arrow["{m_H}"', from=1-1, to=2-1]
+                            	\arrow["{m_G}", from=1-2, to=2-2]
+                            	\arrow["\varphi", from=2-1, to=2-2]
+                            	\arrow["{\varphi \x_S \varphi}", from=1-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                \end{definition}
+                \begin{remark}[Group scheme homomorphisms are group homomorphisms]
+                    Again, as in the case in general categories with enough pullbacks, group scheme homomorphisms preserve identities and inverses. This is easy to check.
+                \end{remark}
+                \begin{remark}[Pullbacks of group schemes] \label{remark: pullbacks_of_group_schemes}
+                    If $f: S' \to S$ is a morphism of schemes and $G$ is a group scheme over $S$, then the pullback $G \x_{S, f} S'$ will be group scheme over $S'$. This is an easy consequence of the fact that limits commute.
+                \end{remark}
+                \begin{remark}[Open and closed subgroup schemes] \label{remark: open_and_closed_subgroup_schemes}
+                    Because limits commute, should $G$ be a group scheme over a given base scheme $S$ and $\iota: H \hookrightarrow G$ be a monomorphism of $S$-schemes (such as open immersions or closed immersions), then $H$ should be a subgroup $S$-scheme of $G$. One thing that is worth checking is that the identity map $e_G: S \to G$ is a monomorphism and therefore the trivial group $S$-scheme $S$ is a subgroup $S$-scheme of $G$.   
+                \end{remark}
+                
+                Before we can discuss properties of group schemes, let us take a brief detour and discuss certain relevant properties of diagonals of (morphisms of) schemes, particularly how they pertain to separatedness.
+                \begin{definition}[(Quasi-)separatedness] \label{def: (quasi)_separatedness}
+                    A morphism $f: X \to S$ of schemes is said to be \textbf{separated} (respectively, \textbf{quasi-separated}) if and only if its diagonal $\Delta_{X/S}$ is closed (respectively, quasi-compact). 
+                \end{definition}
+                \begin{remark}
+                    Obviously, being separated implies being quasi-separated.
+                \end{remark}
+                \begin{lemma}[Diagonals of affines are closed] \label{lemma: diagonals_of_affines_are_closed}
+                    The diagonal of an affine morphism is closed.
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{proposition}[Diagonals are immersions] \label{prop: diagonals_of_schemes_are_immersions}
+                    The diagonal of any morphism of schemes is an immersion.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[Affines are separated] \label{coro: affines_are_separated}
+                    Affine schemes are always separated. More generally, affine morphisms are separated. 
+                \end{corollary}
+                \begin{example}[A scheme that is not quasi-separated] \label{example: a_scheme_that_is_not_quasi_separated}
+                    Let $k$ be a field and let $X$ be the $k$-scheme given by gluing two copies of $\Spec k[x_1, x_2, ...]$ along the complement of the closed subscheme $\Spec k \cong \Spec k[x_1, x_2, ...]/(x_1, x_2, ...)$ inside $\Spec k[x_1, x_2, ...]$, i.e. as the following canonical pushout of $k$-schemes:
+                        $$
+                            \begin{tikzcd}
+                            	{\Spec k[x_1, x_2, ...] \setminus \Spec k} & {\Spec k[x_1, x_2, ...]} \\
+                            	{\Spec k[x_1, x_2, ...]} & X
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow[from=2-1, to=2-2]
+                            	\arrow[from=1-2, to=2-2]
+                            	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                            \end{tikzcd}
+                        $$
+                    We thus see that the topological preimage of $\Spec k[x_1, x_2, ...] \x_{\Spec k} \Spec k[x_1, x_2, ...]$ under the diagonal morphism $\Delta_{\Spec k[x_1, x_2, ...]/\Spec k}$ is the complement $\Spec k[x_1, x_2, ...] \setminus \Spec k$, which is very clearly not quasi-compact.
+                \end{example}
+                \begin{proposition}[Permanence of (quasi-)separatedness] \label{prop: permanence_of_quasi_separatedness}
+                    \noindent
+                    \begin{enumerate}
+                        \item (Quasi-)separatedness is preserved by compositions. In fact, (quasi-)separatedness the 2-out-of-3 property, i.e. for any given commutative triangle of schemes as follows:
+                            $$
+                                \begin{tikzcd}
+                                	X & Y \\
+                                	& Z
+                                	\arrow["f", from=1-1, to=1-2]
+                                	\arrow["g", from=1-2, to=2-2]
+                                	\arrow["h"', from=1-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        if any two of the three arrows are (quasi-)separated morphisms then the remaining one will also be a (quasi-)separated morphism.
+                        \item (Quasi-)separatedness is preserved by base-changes.
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{proposition}
+                    Let $S$ be a scheme, let $\varphi, \psi: Y \toto X$ be morphisms of schemes, and suppose that $Z$ is the following pullback of $S$-schemes:
+                        $$
+                            \begin{tikzcd}
+                            	Z & Y \\
+                            	X & {X \x_S X}
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow["{\Delta_{X/S}}", from=2-1, to=2-2]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow["{\varphi \x_S \psi}", from=1-2, to=2-2]
+                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    If $X$ is separated over $S$ then $Z$ shall be a closed subscheme of $Y$. 
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{lemma}[A topological criterion for (quasi-)separatedness] \label{lemma: topological_criterion_for_(quasi)_separatedness}
+                    
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{lemma}[An algebraic criterion for (quasi-)separatedness] \label{lemma: algebraic_criterion_for_(quasi)_separatedness}
+                    
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{proposition}[(Quasi-)separated and quasi-compactness] \label{prop: (quasi)_separatedness_and_quasi_compactness}
+                    
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                We are now ready to establish a criterion for a given group scheme to be (quasi-)separated.
+                \begin{proposition}[A criterion for (quasi-)separatedness for group schemes] \label{prop: (quasi)_separatedness_criterion_for_group_schemes}
+                    Let $S$ be a scheme and $(G, m, e, i)$ be a group $S$-scheme. Then, $G$ is separated (respectively, quasi-separated) over $S$ if and only if the identity $e: S \to G$ is a closed immersion (respectively, quasi-compact).
+                \end{proposition}
+                    \begin{proof}
+                        Suppose first of all that the identity morphism $e: S \to G$ is a closed immersion (respectively, quasi-compact) and recall that by defintion, a scheme is separated (respectively, quasi-separated) if and only if its diagonal is a closed immersion (respectively, quasi-compact), meaning that we shall have to show that $\Delta_{G/S}: G \to G \x_S G$ is a closed immersion (respectively, quasi-compact). To that end, consider the following diagram (wherein the unnamed arrow is the structural morphism defining $G$ as an $S$-scheme):
+                            $$
+                                \begin{tikzcd}
+                                	G & {G \x_S G} \\
+                                	S & G
+                                	\arrow["{\Delta_{G/S}}", from=1-1, to=1-2]
+                                	\arrow["e", from=2-1, to=2-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow["{m \circ (i \x_S \id_{G/S})}", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        It is not hard to check that this is a pullback square in the category of $S$-schemes, and since closed immersions (respecitvely, quasi-compactness) are preserved by pullbacks (cf. \cite[\href{https://stacks.math.columbia.edu/tag/01JY}{Tag 01JY}]{stacks} and respectively, \cite[\href{https://stacks.math.columbia.edu/tag/01K5}{Tag 01K5}]{stacks}), $e: S \to G$ being a closed immersion implies that $\Delta_{G/S}: G \to G \x_S G$ is also a closed immersion (respectively, quasi-compact). By definition, this means that $G$ is separated (respectively, quasi-separated) over $S$.
+                        
+                        Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$. 
+                    \end{proof}
+            
+            \subsubsection{Group schemes over fields and algebraic groups}
+    
+    \section{What are reductive groups ?}
+    
+    \section{Split reductive groups and theorems about them}
