@@ -110,8 +110,8 @@
                 \begin{proof}
                     
                 \end{proof}
-            \begin{proposition}[Diagonals are immersions] \label{prop: diagonals_of_schemes_are_immersions}
-                The diagonal of any morphism of schemes is an immersion.
+            \begin{proposition}[Diagonals are locally closed immersions] \label{prop: diagonals_of_schemes_are_locally_closed_immersions}
+                The diagonal of any morphism of schemes is a locally closed immersion.
             \end{proposition}
                 \begin{proof}
                     
@@ -196,18 +196,88 @@
                     
                     Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$. Then, note that because $e: S \to G$ is, by definition, a section of the structural morphism $G \to S$ that defines $G$ as an $S$-scheme, one can apply corollary \ref{coro: sections_are_immersions} directly to see that $e: S \to G$ must be a closed immersion (respectively, quasi-compact).
                 \end{proof}
-            \begin{proposition}[A flatness criterion for action groupoids of group schemes] \label{prop: flatness_criterion_for_action_groupoids_of_group_schemes}
-                For some given scheme $S$, suppose that $\psi: T \to G$ is a morphism from a flat $S$-scheme $T$ to a group $S$-scheme $(G, m, e, i)$. Then, the composition $m \circ (\psi \x_S \id_{G/S}): T \x_S G \to G$ is flat as well.
+            
+            Now, one of the most oustanding properties of group schemes is that in many cases, they are smooth; in fact, over fields of characteristic $0$, they are always smooth whenever they are merely locally of finite type, which is a much weaker notion. To be able to establish these properties pertaining to smoothness, however, one will have to conduct some analysis of differential forms on group schemes. Actually, thanks to proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, it shall suffice to understand the behaviour of modules of K\"ahler differentials associated to (closed) immersions.
+            
+            We begin by recalling the notion of the \textbf{conormal sheaf} of an immersion, along with some relevant material on the behaviour of quasi-coherent sheaves with respect to closed immersions. 
+            \begin{lemma}[Quasi-coherent sheaves on closed subschemes] \label{lemma: quasi_coherent_sheaves_on_closed_subschemes}
+                \cite[\href{https://stacks.math.columbia.edu/tag/01QY}{Tag 01QY}]{stacks} Suppose that $X$ is a scheme and that $i: Z \hookrightarrow X$ is a closed subscheme therein, corresponding to a quasi-coherent ideal sheaf $\calI_{Z/X} \subset \calO_X$. In such a situation, the pushforward functor $i_*: \QCoh(Z)\to \QCoh(X)$ will be an exact full faithful embedding whose essential image are quasi-coherent $\calO_X$-modules $\calF \in \QCoh(X)$ such that $\calI_{Z/X} \calF = 0$.
+            \end{lemma}
+            \begin{convention}[Closures and boundaries] \label{conv: closures_and_boundaries}
+                From now on, if $i: Z \hookrightarrow X$ be an immersion of ringed spaces, then we shall denote the its topological closure by $\bar{i}: \bar{Z} \hookrightarrow X$ and boundary by $\del Z := \bar{Z} \setminus Z$. 
+            \end{convention}
+            \begin{definition}[(Co)normal sheaves of closed immersions] \label{def: (co)normal_sheaves_of_closed_immersions}
+                Suppose that $X$ is a scheme and that $i: Z \hookrightarrow X$ is a locally closed subscheme therein, corresponding to a quasi-coherent ideal sheaf $\calI_{Z/X} \subset \calO_X$. The \textbf{conormal sheaf} associated to the locally closed immersion $i: Z \hookrightarrow X$ is the quasi-coherent $\calO_Z$-module $\calN_{Z/X}^{\vee} \cong i^*(\calI_{Z/X}/\calI_{Z/X}^2)$. The dual notion is that of so-called \textbf{normal sheaves}: the normal sheaf associated to a locally closed immersion $i: Z \hookrightarrow X$ is the module-theoretic dual of $\calN_{Z/X}^{\vee}$, i.e. the quasi-coherent $\calO_Z$-module $\calN_{Z/X} \cong \Hom_{\calO_Z}(i^*(\calI_{Z/X}/\calI_{Z/X}^2), \calO_Z)$. 
+                
+                It is also possible to define (co)normal sheaves for locally closed immersions: should $Z \subseteq X$ be a locally closed subscheme then its associated (co)normal sheaf could be defined with respect to the closed immersion $Z \subseteq X \setminus \del Z$.
+            \end{definition} 
+            \begin{remark}[Extension-by-zero of conormal sheaves]
+                Let $i: Z \hookrightarrow X$ be a closed immersion. Because the ideal sheaf $\calI_{Z/X}/\calI_{Z/X}^2$ is annihilated by $\calI_{Z/X}$, one gets by lemma \ref{lemma: quasi_coherent_sheaves_on_closed_subschemes} (which can be understood to imply that the adjunction counit $\eta_{Z/X}: \id_{\QCoh(X)} \to i_*i^*$ is a natural isomorphism), that there is a canonical isomorphism of quasi-coherent $\calO_X$-modules:
+                    $$\eta_{Z/X}(\calI_{Z/X}/\calI_{Z/X}^2): \calI_{Z/X}/\calI_{Z/X}^2 \to i_*i^*(\calI_{Z/X}/\calI_{Z/X}^2)$$
+                This, in turn, induces a canonical isomorphism $\calI_{Z/X}/\calI_{Z/X}^2 \cong i_*\calN_{Z/X}^{\vee}$ of quasi-coherent $\calO_X$-modules.
+            \end{remark}
+            The following result illustrates the necessity for the introduction of conormal sheaves. 
+            \begin{proposition}[Conormal sheaves of diagonals] \label{prop: conormal_sheaves_of_diagonals}
+                \cite[\href{https://stacks.math.columbia.edu/tag/08S2}{Tag 08S2}]{stacks} Let $S$ be a scheme, let $X$ be an $S$-scheme. Then, the conormal sheaf $\calN_{\Delta_{X/S}}^{\vee}$ of the diagonal\footnote{Which is indeed a locally closed immersion by proposition \ref{prop: diagonals_of_schemes_are_locally_closed_immersions}, and therefore on can define $\calN_{\Delta_{X/S}}^{\vee}$ along the induced closed immersion $X \subseteq (X \x_S X) \setminus \del \Delta_{X/S}(X)$.} $\Delta_{X/S}: X \to X \x_S X$ is canonically isomorphic (as a quasi-coherent $\calO_X$-module) to the module of relative K\"ahler differentials $\Omega^1_{X/S}$.
             \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{lemma}[Flat base-changes of quasi-coherent sheaves on closed subschemes] \label{prop: flat_base_changes_of_quasi_coherent_sheaves_on_closed_subschemes}
+                Let $f: X \to X'$ be a flat morphism of schemes and $i': Z' \hookrightarrow X'$ is a closed immersion of schemes, and consider the following pullback square:
+                    $$
+                        \begin{tikzcd}
+                        	Z & X \\
+                        	{Z'} & {X'}
+                        	\arrow["{f|_Z}"', from=1-1, to=2-1]
+                        	\arrow["{i'}", hook, from=2-1, to=2-2]
+                        	\arrow["f", from=1-2, to=2-2]
+                        	\arrow["i", from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                In such a situation, one obtains a corresponding $2$-commutative diagram of abelian categories and exact functors:
+                    $$
+                        \begin{tikzcd}
+                        	{\QCoh(Z)} & {\QCoh(X)} \\
+                        	{\QCoh(Z')} & {\QCoh(X')}
+                        	\arrow["{(f|_Z)^*}", from=2-1, to=1-1]
+                        	\arrow["{(i')_*}", from=2-1, to=2-2]
+                        	\arrow["{i_*}", from=1-1, to=1-2]
+                        	\arrow["{f^*}"', from=2-2, to=1-2]
+                        	\arrow[shorten <=11pt, shorten >=11pt, Rightarrow, from=2-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+            \end{lemma}
+                \begin{proof}
+                    Combine lemma \ref{lemma: quasi_coherent_sheaves_on_closed_subschemes} with \cite[\href{https://stacks.math.columbia.edu/tag/02KH}{Tag 02KH}]{stacks}.
+                \end{proof}
+            \begin{corollary}[Flat base-changes of conormal sheaves] \label{coro: flat_base_changes_of_conormal_sheaves}
+                Let $f: X \to X'$ be a flat morphism of schemes and $i': Z' \hookrightarrow X'$ is a closed immersion of schemes, and consider the following pullback square:
+                    $$
+                        \begin{tikzcd}
+                        	Z & X \\
+                        	{Z'} & {X'}
+                        	\arrow["{f|_Z}"', from=1-1, to=2-1]
+                        	\arrow["{i'}", hook, from=2-1, to=2-2]
+                        	\arrow["f", from=1-2, to=2-2]
+                        	\arrow["i", hook, from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                Then, there is a canonical isomorphism $(f|_Z)^* \calN_{Z'/X'}^{\vee} \to \calN_{Z/X}^{\vee}$ of quasi-coherent $\calO_Z$-modules. 
+            \end{corollary}
+            \begin{lemma}[A flatness criterion for action groupoids of group schemes] \label{lemma: flatness_criterion_for_action_groupoids_of_group_schemes}
+                For some given scheme $S$, suppose that $\psi: T \to G$ is a morphism from a flat $S$-scheme $T$ to a group $S$-scheme $(G, m, e, i)$. Then, the composition $m \circ (\psi \x_S \id_{G/S}): T \x_S G \to G$ is flat as well.
+            \end{lemma}
                 \begin{proof}
                     
                 \end{proof}
             \begin{corollary}
                 The action groupoid of a flat group scheme (cf. convention \ref{conv: action_groupoids_of_group_schemes}) is flat. More generally, if for some fixed base scheme $S$, $G$ is a group $X$-scheme for some $S$-scheme $X$ that is flat over $S$ and acts on $X$ via $\alpha: G \x_S X \to X$ then the associated action groupoid $\alpha, \pr_2: G \x_S X \toto X$ will also be flat.
             \end{corollary}
-            
             \begin{proposition}[Differential forms on group schemes] \label{prop: differential_forms_on_group_schemes}
-                
+                Let $(G, m, e, i)$ be a flat group scheme over a given scheme $S$ and that $\pi: G \to S$ is its structural morphism. 
             \end{proposition}
                 \begin{proof}
                     
