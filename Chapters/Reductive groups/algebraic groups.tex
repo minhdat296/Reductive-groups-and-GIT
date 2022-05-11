@@ -284,4 +284,51 @@
                 \end{proof}
         
         \subsubsection{Group schemes over fields and algebraic groups}
+            \begin{convention}
+                Henceforth, we work over a fixed field $k$.
+            \end{convention}
+            
+            \begin{proposition}[Group schemes over fields are separated] \label{prop: group_schemes_over_fields_are_separated}
+                Any group scheme $(G, m, e, i)$ over $\Spec k$ is separated. 
+            \end{proposition}
+                \begin{proof}
+                    From proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, we know that $G$ is separated over $\Spec k$ if and only if the identity morphism $e: \Spec k \to G$ is a closed immersion, but this is self-evident.
+                \end{proof}
+            
+            \begin{proposition}[Multiplication maps of group schemes over fields are open] \label{prop: multiplication_maps_of_group_schemes_over_fields_are_open}
+                Suppose that $(G, m, e, i)$ is a group scheme over $\Spec k$. Then, the multiplication map $m: G \x_{\Spec k} G \to G$ is open.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            
+        \subsubsection{Abelian varieties}    
+            \begin{definition}[Abelian varieties] \label{def: abelian_varieties}
+                Let $S$ be a base scheme. An \textbf{abelian $S$-scheme} is thus a group $S$-scheme that is smooth, proper and has geometrically connected fibres, which we refer to as \textbf{abelian varieties}.
+            \end{definition}
+            \begin{remark}[Some basic properties of abelian varieties] \label{remark: basic_properties_of_abelian_varieties}
+                The following are important basic properties of abelian varieties that the reader should keep in mind:
+                \begin{itemize}
+                    \item \textbf{(Stability under base change):} Smoothness, properness, and geometric connectedness are all preserved by pullbacks, so pullbacks of abelian schemes are also abelian schemes. In fact, for each fixed base $S$, the category of abelian $S$-schemes is a symmetric monoidal full subcategory of the category of $S$-schemes that are smooth, proper, and with geometrically connected fibres.  
+                    \item \textbf{(Abelian group structure):} Abelian schemes, like their name suggests, are actually abelian group schemes, although this is a somewhat non-trivial phenomenon (see \cite[Proposition 2.1 and Corollaries 2.2, 2.3, and 2.4]{bhatt_abelian_varieties}). 
+                    \item \textbf{(Projectivity):} Abelian schemes over fields (i.e. abelian varieties) are not just proper, but actually projective. This is one more a non-trivial fact, and one proof is \cite[Theorem 11.1]{bhatt_abelian_varieties}.
+                \end{itemize}
+            \end{remark}
+            \begin{example}[Some instances of abelian varieties]
+                \noindent
+                \begin{itemize}
+                    \item \textbf{(Elliptic curves):} Elliptic curves are nothing but abelian varieties of (pure) dimension $1$. 
+                    \item \textbf{(Abelian varieties of higher dimensions):} Algebraic groups over characteristic $0$ are smooth \textit{a priori} (cf. \cite[\href{https://stacks.math.columbia.edu/tag/047N}{Tag 047N}]{stacks}), so any proper characteristic-$0$ group scheme with geometrically connected fibres (e.g. $\Proj\left(\frac{\Z\left[x, y, z, \frac{1}{\Delta}\right]}{(y^2z - x^3 - axz^2 - bz^3)}\right)$, where $a, b \in \Z$ are such that $\Delta := -16(4a^3 + 27b^2)$ is non-zero) is automatically an abelian variety. In particular, a complex abelian variety of dimension $n$, through Serre's GAGA theorem, corresponds to a compact and connected complex Lie group of the form $\bbC^n/\Lambda$ for some full-rank lattice $\Lambda$ (cf. \cite[Remark 1.9]{bhatt_abelian_varieties}); the converse is not necessarily true.
+                    
+                    Over positive characteristics, one can use the fact that an algebraic group over a perfect field is smooth if it is geometrically reduced (cf. \cite[\href{https://stacks.math.columbia.edu/tag/047P}{Tag 047P}]{stacks}) to single out the class of abelian varieties from the class of algebraic groups. Similar to above, one might consider $\Proj\left(\frac{\F_p\left[x, y, z, \frac{1}{\Delta}\right]}{(y^2z - x^3 - axz^2 - bz^3)}\right)$ for $p \not = 2, 3$ and $\Delta \not \equiv 0 \pmod{p}$.
+                \end{itemize}
+            \end{example}
         
+            \begin{theorem}[Chevalley's Decomposition Theorem for algebraic groups] \label{theorem: chevalley_decomposition_theorem_for_algebraic_groups}
+                Let $k$ be a perfect field and $G$ be an algebraic group over $\Spec k$. Then there is a unique short exact sequence of algebraic groups:
+                    $$1 \to H \to G \to A \to 1$$
+                wherein $H$ is a linear algebraic closed $k$-subgroup of $G$ and $A$ is an abelian variety over $\Spec k$, whose formation commutes with base-changes to perfect extensions of $k$ (i.e. \'etale base-changes).
+            \end{theorem}
+                \begin{proof}
+                    
+                \end{proof}
