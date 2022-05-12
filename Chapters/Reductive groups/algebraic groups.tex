@@ -196,8 +196,69 @@
                     
                     Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$. Then, note that because $e: S \to G$ is, by definition, a section of the structural morphism $G \to S$ that defines $G$ as an $S$-scheme, one can apply corollary \ref{coro: sections_are_immersions} directly to see that $e: S \to G$ must be a closed immersion (respectively, quasi-compact).
                 \end{proof}
+        
+        \subsubsection{Group schemes over fields and algebraic groups}
+            \begin{convention}
+                Henceforth, we work over a fixed field $k$.
+            \end{convention}
             
-            Now, one of the most oustanding properties of group schemes is that in many cases, they are smooth; in fact, over fields of characteristic $0$, they are always smooth whenever they are merely locally of finite type, which is a much weaker notion. To be able to establish these properties pertaining to smoothness, however, one will have to conduct some analysis of differential forms on group schemes. Actually, thanks to proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, it shall suffice to understand the behaviour of modules of K\"ahler differentials associated to (closed) immersions.
+            \begin{proposition}[Group schemes over fields are separated] \label{prop: group_schemes_over_fields_are_separated}
+                Any group scheme $(G, m, e, i)$ over $\Spec k$ is separated. 
+            \end{proposition}
+                \begin{proof}
+                    From proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, we know that $G$ is separated over $\Spec k$ if and only if the identity morphism $e: \Spec k \to G$ is a closed immersion, but this is self-evident.
+                \end{proof}
+            
+            \begin{proposition}[Multiplication maps of group schemes over fields are open] \label{prop: multiplication_maps_of_group_schemes_over_fields_are_open}
+                Suppose that $(G, m, e, i)$ is a group scheme over $\Spec k$. Then, the multiplication map $m: G \x_{\Spec k} G \to G$ is open.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            
+            \begin{lemma}[Irreducibility, quasi-compactness, and connectedness] \label{lemma: irreducibility_quasi_compactness_connectedness_of_group_schemes_over_fields}
+                For group schemes over fields, connectedness implies irreducibility, which in turn implies quasi-compactness. 
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof} 
+            \begin{proposition}[Existence, uniqueness, and geometric irreducibility of connected components of the identity] \label{prop: existence_of_identity_components_of_group_schemes_over_fields}
+                Let $G$ be a group scheme over $\Spec k$. Then:
+                    \begin{enumerate}
+                        \item at all points $g \in |G|$, the corresponding stalk of the structure sheaf $\calO_{G, g}$ has a unique minimal prime ideal, and
+                        \item there is a unique geometrically irreducible connected $k$-subscheme $G^{\circ} \subseteq G$ such that $e \in |G^{\circ}|$, called the \textbf{connected component of the identity} or simply the \textbf{identity component}.
+                    \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item 
+                        \item 
+                    \end{enumerate}
+                \end{proof}
+            \begin{corollary}[Identity components are quasi-compact over fields]
+                Let $G$ be group scheme over $\Spec k$. Then the connected component of the identity $G^{\circ}$, by virtue of being connected, is quasi-compact. 
+            \end{corollary}
+                
+            \begin{proposition}[Subgroup schemes are closed over fields] \label{prop: subgroup_schemes_are_closed_over_fields}
+                Any immersion of group schemes over a given field is a closed immersion.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[Identity components are closed over fields]
+                Let $G$ be group scheme over $\Spec k$. Then its identity component $G^{\circ}$, by virtue of being a subscheme of $G$, is a closed subgroup scheme of $G$ over $\Spec k$.
+            \end{corollary}
+            
+            \begin{proposition}[Associated reduced group scheme] \label{prop: associated_reduced_group_scheme}
+                Let $G$ be a group scheme over $\Spec k$. Then the associated reduced scheme ${}^{\red}G$ is a closed subgroup scheme of $G$.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+                
+        \subsubsection{Smoothness of algebraic groups}
+            Now, one of the most oustanding properties of group schemes is that in many cases, they are smooth; in fact, algebraic groups over fields of characteristic $0$ are always smooth, and those over fields of positive characteristics are smooth under rather mild hypotheses. To be able to establish these results pertaining to smoothness, however, one will have to conduct some analysis of differential forms on group schemes. Actually, thanks to proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, it shall suffice to understand the behaviour of modules of K\"ahler differentials associated to (closed) immersions.
             
             We begin by recalling the notion of the \textbf{conormal sheaf} of an immersion, along with some relevant material on the behaviour of quasi-coherent sheaves with respect to closed immersions. 
             \begin{lemma}[Quasi-coherent sheaves on closed subschemes] \label{lemma: quasi_coherent_sheaves_on_closed_subschemes}
@@ -282,68 +343,6 @@
                 \begin{proof}
                     
                 \end{proof}
-        
-        \subsubsection{Group schemes over fields}
-            \begin{convention}
-                Henceforth, we work over a fixed field $k$.
-            \end{convention}
-            
-            \begin{proposition}[Group schemes over fields are separated] \label{prop: group_schemes_over_fields_are_separated}
-                Any group scheme $(G, m, e, i)$ over $\Spec k$ is separated. 
-            \end{proposition}
-                \begin{proof}
-                    From proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, we know that $G$ is separated over $\Spec k$ if and only if the identity morphism $e: \Spec k \to G$ is a closed immersion, but this is self-evident.
-                \end{proof}
-            
-            \begin{proposition}[Multiplication maps of group schemes over fields are open] \label{prop: multiplication_maps_of_group_schemes_over_fields_are_open}
-                Suppose that $(G, m, e, i)$ is a group scheme over $\Spec k$. Then, the multiplication map $m: G \x_{\Spec k} G \to G$ is open.
-            \end{proposition}
-                \begin{proof}
-                    
-                \end{proof}
-            
-            \begin{lemma}[Irreducibility, quasi-compactness, and connectedness] \label{lemma: irreducibility_quasi_compactness_connectedness_of_group_schemes_over_fields}
-                For group schemes over fields, connectedness implies irreducibility, which in turn implies quasi-compactness. 
-            \end{lemma}
-                \begin{proof}
-                    
-                \end{proof} 
-            \begin{proposition}[Existence, uniqueness, and geometric irreducibility of connected components of the identity] \label{prop: existence_of_identity_components_of_group_schemes_over_fields}
-                Let $G$ be a group scheme over $\Spec k$. Then:
-                    \begin{enumerate}
-                        \item at all points $g \in |G|$, the corresponding stalk of the structure sheaf $\calO_{G, g}$ has a unique minimal prime ideal, and
-                        \item there is a unique geometrically irreducible connected $k$-subscheme $G^{\circ} \subseteq G$ such that $e \in |G^{\circ}|$, called the \textbf{connected component of the identity} or simply the \textbf{identity component}.
-                    \end{enumerate}
-            \end{proposition}
-                \begin{proof}
-                    \noindent
-                    \begin{enumerate}
-                        \item 
-                        \item 
-                    \end{enumerate}
-                \end{proof}
-            \begin{corollary}[Identity components are quasi-compact over fields]
-                Let $G$ be group scheme over $\Spec k$. Then the connected component of the identity $G^{\circ}$, by virtue of being connected, is quasi-compact. 
-            \end{corollary}
-                
-            \begin{proposition}[Subgroup schemes are closed over fields] \label{prop: subgroup_schemes_are_closed_over_fields}
-                Any immersion of group schemes over a given field is a closed immersion.
-            \end{proposition}
-                \begin{proof}
-                    
-                \end{proof}
-            \begin{corollary}[Identity components are closed over fields]
-                Let $G$ be group scheme over $\Spec k$. Then its identity component $G^{\circ}$, by virtue of being a subscheme of $G$, is a closed subgroup scheme of $G$ over $\Spec k$.
-            \end{corollary}
-            
-            \begin{proposition}[Associated reduced group scheme] \label{prop: associated_reduced_group_scheme}
-                Let $G$ be a group scheme over $\Spec k$. Then the associated reduced scheme ${}^{\red}G$ is a closed subgroup scheme of $G$.
-            \end{proposition}
-                \begin{proof}
-                    
-                \end{proof}
-                
-        \subsubsection{(Locally) algebraic groups}
                 
     \subsection{Reductive group schemes}
         \subsubsection{Normalisers, centralisers, and quotients}
