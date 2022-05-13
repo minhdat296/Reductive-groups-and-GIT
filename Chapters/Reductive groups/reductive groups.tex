@@ -1,0 +1,28 @@
+\section{Reductive group schemes}
+    \subsection{Reductive groups over algebraically closed fields}
+        \begin{convention}
+            Throughout, we work over an algebraically closed field $k$.
+        \end{convention}
+        
+        \begin{convention}
+            Throughout this subsection, the default topology on the category of schemes shall be the fppf topology. We shall also be ignoring set-theoretic issues: in particular, all categories of sheaves on sites shall be taken to be Grothendieck topoi, which leads to the existence of all sheafifications. 
+        \end{convention}
+    
+        \begin{convention}[Quotient sheaves] \label{conv: linear_algebraic_group_quotients}
+            Suppose that $G$ is a linear algebraic group and that $H$ is a subgroup thereof, both over $\Spec k$, and suppose that $H$ acts upon $G$ via some (right-)action $\alpha: G \x_{\Spec k} H \to G$. Such an action induces a pre-relation $\alpha, \pr_1: G \x_{\Spec k} H \toto G$ on $G$ over $\Spec k$, with respect to which one can form the quotient sheaf $G/H$ of $G$ by the aforementioned pre-relation as the following coequaliser:
+                $$
+                    \begin{tikzcd}
+                    	{G \x_{\Spec k} H} & G & {G/H}
+                    	\arrow["{\pr_1}"', shift right=2, from=1-1, to=1-2]
+                    	\arrow["\alpha", shift left=2, from=1-1, to=1-2]
+                    	\arrow["", two heads, from=1-2, to=1-3]
+                    \end{tikzcd}
+                $$
+            As sheafification is left-adjoint to the natural embedding of the sheaf category $\Sh((\Sch_{/\Spec k})_{\fppf})$ into the presheaf category $\Psh((\Sch_{/\Spec k})_{\fppf})$, the quotient sheaf $G/H$ is nothing but the fppf-sheafification of the presheaf on $\Sch_{/\Spec k}$ given by $T \mapsto G(T)/H(T)$, where the quotient is taken with respect to the action $\alpha(T): G(T) \x_{(\Spec k)(T)} H(T) \to G(T)$.
+        \end{convention}
+
+    \subsection{Normalisers, centralisers, and quotients}
+    
+    \subsection{Reductive group schemes and geometric reductivity}
+
+\section{Roots and coroots}
