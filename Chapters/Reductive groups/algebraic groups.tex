@@ -345,7 +345,134 @@
                 \end{proof}
             
     \subsection{Representations of algebraic groups}
-        \subsubsection{Linear representations of algebraic groups}
+        \subsubsection{Linear representations of algebraic groups and Hopf algebras}
+            \begin{convention}[Global sections]
+                The global section of a given scheme $X$ shall be abbreviated by $\Gamma(X)$. In particular, should $G$ be a group scheme over a commutative ring $k$ then we shall write $\Gamma(G/k)$ or $\Gamma(G)$ for its global section, as opposed to $k[G]$ or $k\<G\>$ as is common practice in standard references on the representation theory of algebraic groups. This is to avoid the confusion of the global section of a group scheme with its group algebra, which is a rather different notion and more often than not is not even a commutative ring.
+            \end{convention}
+            \begin{convention}[Group algebras]
+                If $G$ is a group scheme over a commutative ring $k$ then we shall be writing $k[G]$ for the group $k$-algebra of $G(k)$. It is clear that the assignment of a group scheme to its group algebra is functorial. 
+            \end{convention}
+            
+            \begin{definition}[Algebras, coalgebras, and bialgebras] \label{def: algebras_coalgebras_and_bialgebras} 
+                Let $(\calV, \tensor, \1)$ be a monoidal category. 
+                    \begin{enumerate}
+                        \item \textbf{(Algebras):} A(n) (associative and unital) \textbf{algebra} $A$ internal to $\calV$ is a monoid object of $\calV$, i.e. one equipped with a so-called multiplication $\nabla: A \tensor A \to A$ and unit $\eta: \1 \to A$, which together satisfy the following commutative diagrams:
+                            $$
+                                \begin{tikzcd}
+                                	{A \tensor A \tensor A} & {A \tensor A} \\
+                                	{A \tensor A} & {A}
+                                	\arrow["{\id_A \tensor \nabla}"', from=1-1, to=2-1]
+                                	\arrow["{\nabla}", from=2-1, to=2-2]
+                                	\arrow["{\nabla \tensor \id_A}", from=1-1, to=1-2]
+                                	\arrow["{\nabla}", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                            $$
+                                \begin{tikzcd}
+                                	{\1 \tensor A} & {A \tensor A} \\
+                                	{A \tensor A} & {A}
+                                	\arrow["{\nabla}", from=1-2, to=2-2]
+                                	\arrow["{\nabla}", from=2-1, to=2-2]
+                                	\arrow["{\id_A \tensor \eta}"', from=1-1, to=2-1]
+                                	\arrow["{\eta \tensor \id_A}", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        \item \textbf{(Coalgebras):} A (coassociative and counital) \textbf{coalgebra} internal to $\calV$ is then a comonoid object of $\calV$, or in other words, an monoid object in $\calV^{\op}$. Typically, the so-called multiplication and counit maps on a coalgebra will be denoted by $\Delta$ and $\e$.
+                        \item \textbf{(Bialgebras):} A(n) (associative, coassociative, unital, and counital) \textbf{bialgebra} internal to $\calV$ is an object that is simultaneously an (associative and unital) algebra and a (coassociative and counital) coalgebra.
+                    \end{enumerate}
+                Algebras, coalgebras, and bialgebras internal to a monoidal category $\calV$ form full subcategories, which we will denote, respectively, by $\Assoc\Alg(\calV), \co\Assoc\Alg(\calV)$, and $\bi\Alg(\calV)$.
+            \end{definition}
+            \begin{convention}
+                Unless stated otherwise, every algebra shall be assumed to be associative and unital for now, and every coalgebra shall likewise be taken as being coassociative and counital. 
+            \end{convention}
+            \begin{definition}[(Co)commutativity] \label{def: (co)commutativity}
+                Suppose that $(\calV, \tensor, \1)$ is a monoidal category and that $A$ is an object equipped with a braiding $\tau_{A, A}: A \tensor A \to A \tensor A$. Should $A$ be an algebra $(A, \nabla, \eta)$, then it shall be \textbf{commutative} in the event that the following diagram commutes:
+                    $$
+                        \begin{tikzcd}
+                        	{A \tensor A} && {A \tensor A} \\
+                        	& A
+                        	\arrow["{\tau_{A, A}}", from=1-1, to=1-3]
+                        	\arrow["\nabla"', from=1-1, to=2-2]
+                        	\arrow["\nabla", from=1-3, to=2-2]
+                        \end{tikzcd}
+                    $$
+                Dually, a \textbf{cocommutative} coalgebra in $\calV$ is a commutative algebra in $\calV^{\op}$.
+            \end{definition}
+            \begin{definition}[Hopf algebras] \label{def: hopf_algebras}
+                Let $(\calV, \tensor, \1)$ be a monoidal category. Then, a bialgebra $(H, \nabla, \eta, \Delta, \e)$ is called a \textbf{Hopf algebra} if there exists a so-called \textbf{antipode} $\sigma: H \to H$ for which the following diagram commutes:
+                    $$
+                        \begin{tikzcd}
+                        	& {H \tensor H} && {H \tensor H} \\
+                        	{H} && {\1} && {H} \\
+                        	& {H \tensor H} && {H \tensor H}
+                        	\arrow["{\Delta}"', from=2-1, to=3-2]
+                        	\arrow["{\id_H \tensor \sigma}"', from=3-2, to=3-4]
+                        	\arrow["{\Delta}", from=2-1, to=1-2]
+                        	\arrow["{\sigma \tensor \id_H}", from=1-2, to=1-4]
+                        	\arrow["{\nabla}", from=1-4, to=2-5]
+                        	\arrow["{\nabla}"', from=3-4, to=2-5]
+                        	\arrow["{\e}", from=2-1, to=2-3]
+                        	\arrow["{\eta}", from=2-3, to=2-5]
+                        \end{tikzcd}
+                    $$
+                There is an obvious category of Hopf algebras internal to $\calV$, which we shall denote by $\Hopf\Alg(\calV)$.
+            \end{definition}
+            \begin{example}[Hopf algebra structures on global sections of group schemes] \label{example: hope_algebra_structures_on_global_sections_of_group_schemes}
+                Suppose that $S$ is a scheme, which can be taken to be some affine scheme $\Spec k$ without any loss of generality. In addition, suppose that $G$ is a group scheme over $\Spec k$. The global section $\Gamma(G/k)$ has a natural structure of a commutative Hopf algebra internal to the symmetric\footnote{Symmetry is important here, because it implies that every object is equipped with an invertible braiding.} monoidal category of $k$-modules. Furthermore, $\Gamma(G/k)$ is cocommutative if and only if $G$ is abelian. 
+                
+                In fact, there are the following (monoidal) adjoint equivalences, compatible in the obvious manner:
+                    $$
+                        \begin{tikzcd}
+                        	{k\-\Comm\Hopf\Alg^{\op}} & {\Grp\Sch(\Spec k)}
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, "{\Spec }"', bend right, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', bend right, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+                    $$
+                        \begin{tikzcd}
+                        	{k\-\co\Comm\Comm\Hopf\Alg^{\op}} & {\Comm\Grp\Sch(\Spec k)}
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, "{\Spec }"', bend right, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', bend right, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+            \end{example}
+            
+            \begin{definition}[Diagonalisable group schemes] \label{def: diagonalisable_group_schemes}
+                Suppose that $\Lambda$ is a commutative group. Then, over a commutative ring $k$, one can define an associated (affine) group $k$-scheme $\Diag(\Lambda/k) \cong \Spec k[\Lambda]$, called the \textbf{diagonalisation} of $\Lambda$, by putting a cocommutative and commutative Hopf algebra structure on $k[\Lambda]$ via the comultiplication $\Delta(\lambda) := \lambda \tensor \lambda$, counit $\e(\lambda) := 1$, and antipode $\sigma(\lambda) = \lambda^{-1}$.
+                
+                A group scheme over $\Spec k$ that is isomorphic to one of the form $\Diag(\Lambda/k)$ is said to be \textbf{diagonalisable}\footnote{As we shall see, this is the same as requiring that diagonalisable group schemes be in the essential image of the functor $\Diag: \Comm\Grp \to \Grp\Sch(\Spec k)$.} over $\Spec k$.
+            \end{definition}
+            \begin{remark}[Diagonalisable algebraic groups] \label{remark: diagonalisable_algebraic_groups}
+                Fix a commutative ring $k$. While it is rather obvious that there is a functor:
+                    $$\Diag: \Comm\Grp^{\op} \to \Diag\Grp\Sch(\Spec k)$$
+                    $$\Lambda \mapsto \Spec k[\Lambda]$$
+                coming from the fact that homomorphisms of group algebras one can actually say much more. For instance, it commutes with base-changes by construction: for every homomorphism between commutative rings $k \to k'$, one has:
+                    $$\Diag(\Lambda/k') \cong \Spec k'[\Lambda] \cong \Spec \left(k[\Lambda] \tensor_k k'\right) \cong \Spec k[\Lambda] \x_{\Spec k} \Spec k' \cong \Diag(\Lambda/k) \x_{\Spec k} \Spec k'$$
+                In addition, observe that if a given commutative group $\Lambda$ were to be finitely generated\footnote{Henceforth, we shall refer to finitely generated groups as groups of finite type so that the terminology will line up with those of modules and algebras.} (say, by $\lambda_1, ..., \lambda_n$) then its group $k$-algebra $k[\Lambda]$ would be of finite type as a (commutative) $k$-algebra by virtue of being isomorphic to $k[\lambda_1, ..., \lambda_n]$ (note that the variables $\lambda_1, ..., \lambda_n$ might not be $k[x_1, ..., x_n]$-linearly independent), which in turn implies that the associated diagonalisable group scheme $\Diag(\Lambda/k) \cong \Spec k[\Lambda]$ is of finite type over $\Spec k$; as a result, $\Diag(\Lambda/k)$ is an algebraic group over $\Spec k$ whenever $\Lambda$ is finitely generated (and of course, when $k$ is a field). Since algebraic groups form a full subcategory of the category of group schemes, the above analysis leads to a functor:
+                    $$\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp(\Spec k)$$
+                Of course, this functor also commutes with base-changes. 
+            \end{remark}
+            \begin{proposition}
+                
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}
+                
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[The Fundamental Theorem of Diagonalisable Algebraic Groups] \label{coro: the_fundamental_theorem_of_diagonalisable_algebraic_groups}
+                Suppose that $\Lambda$ is a commutative group of finite type which decomposes\footnote{By the Fundamental Theorem of Finitely Generated Abelian Groups} into free and torsion factors as follows (note that we are supposing that $\rank_{\Z} \Lambda = r$):
+                    $$\Lambda \cong \Z^{\oplus r} \oplus \bigoplus_{i = 1}^s (\Z/p_i\Z)^{\oplus e_i}$$
+                wherein $p_1, ..., p_s$ are certain primes and $e_i$ are positive integer exponents. In addition, fix a field $k$. Then, by exactness, the diagonalisable algebraic group $\Diag(\Lambda/k)$ decomposes as:
+                    $$\Diag(\Lambda/k) \cong \Diag(\Z/k)^r \x_{\Spec k} \prod_{i = 1}^s \Diag((\Z/p_i\Z)/k)^{e_i} \cong \G_m^r \x_{\Spec k} \prod_{i = 1}^s \mu_{p_i}^{e_i}$$
+                From this, one sees that every torsion-free diagonalisable algebra group is a torus.
+            \end{corollary}
     
         \subsubsection{Restrictions and inductions; Frobenius Reciprocity}
         
