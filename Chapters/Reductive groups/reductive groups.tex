@@ -7,21 +7,67 @@
         \begin{convention}
             Throughout this subsection, the default topology on the category of schemes shall be the fppf topology. We shall also be ignoring set-theoretic issues: in particular, all categories of sheaves on sites shall be taken to be Grothendieck topoi, which leads to the existence of all sheafifications. 
         \end{convention}
-    
-        \begin{convention}[Quotient sheaves] \label{conv: linear_algebraic_group_quotients}
-            Suppose that $G$ is a linear algebraic group and that $H$ is a subgroup thereof, both over $\Spec k$, and suppose that $H$ acts upon $G$ via some (right-)action $\alpha: G \x_{\Spec k} H \to G$. Such an action induces a pre-relation $\alpha, \pr_1: G \x_{\Spec k} H \toto G$ on $G$ over $\Spec k$, with respect to which one can form the quotient sheaf $G/H$ of $G$ by the aforementioned pre-relation as the following coequaliser:
-                $$
-                    \begin{tikzcd}
-                    	{G \x_{\Spec k} H} & G & {G/H}
-                    	\arrow["{\pr_1}"', shift right=2, from=1-1, to=1-2]
-                    	\arrow["\alpha", shift left=2, from=1-1, to=1-2]
-                    	\arrow["", two heads, from=1-2, to=1-3]
-                    \end{tikzcd}
-                $$
-            As sheafification is left-adjoint to the natural embedding of the sheaf category $\Sh((\Sch_{/\Spec k})_{\fppf})$ into the presheaf category $\Psh((\Sch_{/\Spec k})_{\fppf})$, the quotient sheaf $G/H$ is nothing but the fppf-sheafification of the presheaf on $\Sch_{/\Spec k}$ given by $T \mapsto G(T)/H(T)$, where the quotient is taken with respect to the action $\alpha(T): G(T) \x_{(\Spec k)(T)} H(T) \to G(T)$.
-        \end{convention}
 
     \subsection{Normalisers, centralisers, and quotients}
+        \subsubsection{Transporters and homomorphisms}
+            \begin{definition}[Adjoint actions] \label{def: adjoint_actions}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Adjoint actions of groups):} The \textbf{adjoint action} of a group $G$ on a subset $X \subseteq G$ is given by:
+                        $$\Ad_G: G \to \Aut(X)$$
+                        $$g \mapsto \left(\Ad_G(g): X \to X: x \mapsto gxg^{-1}\right)$$
+                    \item \textbf{(Adjoint actions of group schemes):} Suppose that $G$ is a group scheme over a given base scheme $S$ and that $i: X \hookrightarrow G$ is a monomorphism of $S$-schemes. The \textbf{adjoint action} of $G$ on $X$ is thus a natural transformation $\Ad_G: G \to \Aut(X/S)$ given by $\Ad_{G(T)}$ at each $T \in \Ob((\Sch_{/S})_{\fppf})$.
+                \end{enumerate}
+            \end{definition}
+            \begin{definition}[Kernels] \label{def: kernels_of_homomorphisms_of_group_schemes}
+                Suppose that $S$ is a scheme and that $\varphi: H \to G$ is a homomorphism of group presheaves on $(\Sch_{/S})_{\fppf}$. Then, thanks to the category of presheaves of groups on $(\Sch_{/S})_{\fppf}$ having all finite pullbacks\footnote{Which comes from the fact that $\Psh((\Sch_{/S})_{\fppf})$ has all (finite) pullbacks and that presheaves of groups on $(\Sch_{/S})_{\fppf}$ are defined internally via the monoidal structure on $\Psh((\Sch_{/S})_{\fppf})$ induced by binary products.} as well as initial objects $1_S$ (namely those isomorphic to $S$, as every group $S$-scheme is equipped with a uniquely defined identity morphism $e: S \to G$ by definition), one can define $\ker \varphi$ has the following pullback of presheaves of groups on $(\Sch_{/S})_{\fppf}$:
+                    $$
+                        \begin{tikzcd}
+                        	{\ker \varphi} & {1_S} \\
+                        	H & G
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow["\varphi", from=2-1, to=2-2]
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{remark}[Representability of automorphism groups of schemes] \label{remark: representability_of_automorphism_groups_of_schemes}
+                One reason that we needed the notion of kernels of homomorphisms of presheaves of groups on $\Psh((\Sch_{/S})_{\fppf})$ (with $S$ being some fixed base scheme) rather than the more concrete\footnote{Not that the two differ much from a categorical point of view.} notion of kernels of homomorphisms between group $S$-schemes is because it is not always guaranteed that for any $S$-scheme $X$, the automorphism group $\Aut(X/S)$ is representable by an $S$-scheme. 
+            \end{remark}
+            \begin{definition}[Normalisers] \label{def: normalisers}
+                Suppose that $S$ is a scheme, $G$ is a group $S$-scheme and $i: X \hookrightarrow G$ is a monomorphism of $S$-schemes. Then, the \textbf{normaliser} of $X$ inside $G$ (or rather, associated to the monomorphism $i: X \hookrightarrow G$), denoted by $\Norm_G(X)$, is the scheme-theoretic kernel $\ker \Ad_G$ of the adjoint action of $G$ on the subscheme $X$.
+            \end{definition}
+            \begin{definition}[Transporters] \label{def: transporters}
+                Suppose that $S$ is a scheme and $G$ is a group scheme over $S$. In addition, suppose that we are given two monomorphisms $i: X \hookrightarrow G$ and $j: Y \hookrightarrow G$ of $S$-schemes. The \textbf{transporter} from $X$ to $Y$ inside $G$ (or rather, from the monomorphism $i: X \hookrightarrow G$ to the monomorphism $j: Y \hookrightarrow G$) is thus the following pullback in the category of group $S$-schemes:
+                    $$
+                        \begin{tikzcd}
+                        	{\Transporter_G(X, Y)} & {\Norm_G(Y)} \\
+                        	{\Norm_G(X)} & G
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{remark}[Transporters and normalisers]
+                It is not hard to see that given a fixed group $S$-scheme $G$ and a fixed monomorphism $i: X \hookrightarrow G$, we have a natural isomorphism $\Norm_G(X) \cong \Transporter_G(X, X)$. 
+            \end{remark}
+            \begin{lemma}[Representability of automorphism groups of schemes] \label{lemma: representability_of_automorphism_groups_of_schemes}
+                
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[Representability of normalisers and transporters] \label{coro: representability_of_normalisers_and_transporteres}
+                Let $S$ be a scheme and $G$ be a group scheme over $S$. Then, the 
+            \end{corollary}
+                \begin{proof}
+                    
+                \end{proof}
     
     \subsection{Reductive group schemes and geometric reductivity}
 

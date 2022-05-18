@@ -44,7 +44,7 @@
                         	\arrow[from=1-2, to=3-2]
                         \end{tikzcd}
                     $$
-                As is the case in general categories with enough pullbacks, there is a (non-full) subcategory $\Grp(S) \subset \Sch_{/S}$ spanned by group $S$-schemes and homomorphisms between them, i.e. morphisms $\varphi: (H, m_H, e_H, i_H) \to (G, m_G, e_G, i_G)$ such that the following diagram commutes:
+                As is the case in general categories with enough pullbacks, there is a (non-full) subcategory $\Grp\Sch_{/S} \subset \Sch_{/S}$ spanned by group $S$-schemes and homomorphisms between them, i.e. morphisms $\varphi: (H, m_H, e_H, i_H) \to (G, m_G, e_G, i_G)$ such that the following diagram commutes:
                     $$
                         \begin{tikzcd}
                         	{H \x_S H} & {G \x_S G} & {} \\
@@ -284,36 +284,7 @@
                 \begin{proof}
                     
                 \end{proof}
-            \begin{lemma}[Flat base-changes of quasi-coherent sheaves on closed subschemes] \label{prop: flat_base_changes_of_quasi_coherent_sheaves_on_closed_subschemes}
-                Let $f: X \to X'$ be a flat morphism of schemes and $i': Z' \hookrightarrow X'$ is a closed immersion of schemes, and consider the following pullback square:
-                    $$
-                        \begin{tikzcd}
-                        	Z & X \\
-                        	{Z'} & {X'}
-                        	\arrow["{f|_Z}"', from=1-1, to=2-1]
-                        	\arrow["{i'}", hook, from=2-1, to=2-2]
-                        	\arrow["f", from=1-2, to=2-2]
-                        	\arrow["i", from=1-1, to=1-2]
-                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                        \end{tikzcd}
-                    $$
-                In such a situation, one obtains a corresponding $2$-commutative diagram of abelian categories and exact functors:
-                    $$
-                        \begin{tikzcd}
-                        	{\QCoh(Z)} & {\QCoh(X)} \\
-                        	{\QCoh(Z')} & {\QCoh(X')}
-                        	\arrow["{(f|_Z)^*}", from=2-1, to=1-1]
-                        	\arrow["{(i')_*}", from=2-1, to=2-2]
-                        	\arrow["{i_*}", from=1-1, to=1-2]
-                        	\arrow["{f^*}"', from=2-2, to=1-2]
-                        	\arrow[shorten <=11pt, shorten >=11pt, Rightarrow, from=2-1, to=1-2]
-                        \end{tikzcd}
-                    $$
-            \end{lemma}
-                \begin{proof}
-                    Combine lemma \ref{lemma: quasi_coherent_sheaves_on_closed_subschemes} with \cite[\href{https://stacks.math.columbia.edu/tag/02KH}{Tag 02KH}]{stacks}.
-                \end{proof}
-            \begin{corollary}[Flat base-changes of conormal sheaves] \label{coro: flat_base_changes_of_conormal_sheaves}
+            \begin{proposition}[Flat base-changes of conormal sheaves] \label{prop: flat_base_changes_of_conormal_sheaves}
                 Let $f: X \to X'$ be a flat morphism of schemes and $i': Z' \hookrightarrow X'$ is a closed immersion of schemes, and consider the following pullback square:
                     $$
                         \begin{tikzcd}
@@ -327,7 +298,10 @@
                         \end{tikzcd}
                     $$
                 Then, there is a canonical isomorphism $(f|_Z)^* \calN_{Z'/X'}^{\vee} \to \calN_{Z/X}^{\vee}$ of quasi-coherent $\calO_Z$-modules. 
-            \end{corollary}
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
             \begin{lemma}[A flatness criterion for action groupoids of group schemes] \label{lemma: flatness_criterion_for_action_groupoids_of_group_schemes}
                 For some given scheme $S$, suppose that $\psi: T \to G$ is a morphism from a flat $S$-scheme $T$ to a group $S$-scheme $(G, m, e, i)$. Then, the composition $m \circ (\psi \x_S \id_{G/S}): T \x_S G \to G$ is flat as well.
             \end{lemma}
@@ -346,16 +320,9 @@
             
     \subsection{Representations of algebraic groups}
         \subsubsection{Linear representations of algebraic groups and Hopf algebras}
-            \begin{convention}[Global sections]
-                The global section of a given scheme $X$ shall be abbreviated by $\Gamma(X)$. In particular, should $G$ be a group scheme over a commutative ring $k$ then we shall write $\Gamma(G/k)$ or $\Gamma(G)$ for its global section, as opposed to $k[G]$ or $k\<G\>$ as is common practice in standard references on the representation theory of algebraic groups. This is to avoid the confusion of the global section of a group scheme with its group algebra, which is a rather different notion and more often than not is not even a commutative ring.
-            \end{convention}
-            \begin{convention}[Group algebras]
-                If $G$ is a group scheme over a commutative ring $k$ then we shall be writing $k[G]$ for the group $k$-algebra of $G(k)$. It is clear that the assignment of a group scheme to its group algebra is functorial. 
-            \end{convention}
-            
             \begin{definition}[Algebras, coalgebras, and bialgebras] \label{def: algebras_coalgebras_and_bialgebras} 
                 Let $(\calV, \tensor, \1)$ be a monoidal category. 
-                    \begin{enumerate}
+                    \begin{itemize}
                         \item \textbf{(Algebras):} A(n) (associative and unital) \textbf{algebra} $A$ internal to $\calV$ is a monoid object of $\calV$, i.e. one equipped with a so-called multiplication $\nabla: A \tensor A \to A$ and unit $\eta: \1 \to A$, which together satisfy the following commutative diagrams:
                             $$
                                 \begin{tikzcd}
@@ -379,8 +346,8 @@
                             $$
                         \item \textbf{(Coalgebras):} A (coassociative and counital) \textbf{coalgebra} internal to $\calV$ is then a comonoid object of $\calV$, or in other words, an monoid object in $\calV^{\op}$. Typically, the so-called multiplication and counit maps on a coalgebra will be denoted by $\Delta$ and $\e$.
                         \item \textbf{(Bialgebras):} A(n) (associative, coassociative, unital, and counital) \textbf{bialgebra} internal to $\calV$ is an object that is simultaneously an (associative and unital) algebra and a (coassociative and counital) coalgebra.
-                    \end{enumerate}
-                Algebras, coalgebras, and bialgebras internal to a monoidal category $\calV$ form full subcategories, which we will denote, respectively, by $\Assoc\Alg(\calV), \co\Assoc\Alg(\calV)$, and $\bi\Alg(\calV)$.
+                    \end{itemize}
+                Algebras, coalgebras, and bialgebras internal to a monoidal category $\calV$ form subcategories, which we will denote, respectively, by $\Assoc\Alg(\calV), \co\Assoc\Alg(\calV)$, and $\bi\Alg(\calV)$.
             \end{definition}
             \begin{convention}
                 Unless stated otherwise, every algebra shall be assumed to be associative and unital for now, and every coalgebra shall likewise be taken as being coassociative and counital. 
@@ -418,9 +385,7 @@
                 There is an obvious category of Hopf algebras internal to $\calV$, which we shall denote by $\Hopf\Alg(\calV)$.
             \end{definition}
             \begin{example}[Hopf algebra structures on global sections of group schemes] \label{example: hope_algebra_structures_on_global_sections_of_group_schemes}
-                Suppose that $S$ is a scheme, which can be taken to be some affine scheme $\Spec k$ without any loss of generality. In addition, suppose that $G$ is a group scheme over $\Spec k$. The global section $\Gamma(G/k)$ has a natural structure of a commutative Hopf algebra internal to the symmetric\footnote{Symmetry is important here, because it implies that every object is equipped with an invertible braiding.} monoidal category of $k$-modules. Furthermore, $\Gamma(G/k)$ is cocommutative if and only if $G$ is abelian. 
-                
-                In fact, there are the following (monoidal) adjoint equivalences, compatible in the obvious manner:
+                Suppose that $S$ is a scheme, which can be taken to be some affine scheme $\Spec k$ without any loss of generality. In addition, suppose that $G$ is a group scheme over $\Spec k$. One sees that the global section $\Gamma(G, \calO_G)$ has a natural structure of a commutative Hopf algebra internal to the symmetric\footnote{Symmetry is important here, because it implies that every object is equipped with an invertible braiding.} monoidal category of $k$-modules. Furthermore, $\Gamma(G, \calO_G)$ is cocommutative if and only if $G$ is abelian. In fact, there are the following (monoidal) adjoint equivalences, compatible in the obvious manner:
                     $$
                         \begin{tikzcd}
                         	{k\-\Comm\Hopf\Alg^{\op}} & {\Grp\Sch(\Spec k)}
@@ -442,27 +407,36 @@
             \begin{definition}[Diagonalisable group schemes] \label{def: diagonalisable_group_schemes}
                 Suppose that $\Lambda$ is a commutative group. Then, over a commutative ring $k$, one can define an associated (affine) group $k$-scheme $\Diag(\Lambda/k) \cong \Spec k[\Lambda]$, called the \textbf{diagonalisation} of $\Lambda$, by putting a cocommutative and commutative Hopf algebra structure on $k[\Lambda]$ via the comultiplication $\Delta(\lambda) := \lambda \tensor \lambda$, counit $\e(\lambda) := 1$, and antipode $\sigma(\lambda) = \lambda^{-1}$.
                 
-                A group scheme over $\Spec k$ that is isomorphic to one of the form $\Diag(\Lambda/k)$ is said to be \textbf{diagonalisable}\footnote{As we shall see, this is the same as requiring that diagonalisable group schemes be in the essential image of the functor $\Diag: \Comm\Grp \to \Grp\Sch(\Spec k)$.} over $\Spec k$.
+                A group scheme over $\Spec k$ that is isomorphic to one of the form $\Diag(\Lambda/k)$ is said to be \textbf{diagonalisable}\footnote{As we shall see, this is the same as requiring that diagonalisable group schemes be in the essential image of the functor $\Diag: \Comm\Grp \to \Grp\Sch(\Spec k)$.} over $\Spec k$, and in doing so one obtains a full subcategory $\Diag\Grp\Sch^{\aff}_{/\Spec k}$ spanned by diagonalisable group schemes over $\Spec k$.
             \end{definition}
+            \begin{remark}
+                It should be noted that over non-affine bases, one can certainly construct diagonalisable non-affine group schemes. However, one does not lose any amount of generality by working over non-affine bases, so this is not an issue we will have to worry about. Nevertheless, we write the \say{$\aff$} superscript to put emphasis on this subtlety. Diagonalisable algebraic groups, as they are always defined over fields, will instead always be affine.
+            \end{remark}
             \begin{remark}[Diagonalisable algebraic groups] \label{remark: diagonalisable_algebraic_groups}
                 Fix a commutative ring $k$. While it is rather obvious that there is a functor:
-                    $$\Diag: \Comm\Grp^{\op} \to \Diag\Grp\Sch(\Spec k)$$
+                    $$\Diag: \Comm\Grp^{\op} \to \Diag\Grp\Sch^{\aff}_{/\Spec k}$$
                     $$\Lambda \mapsto \Spec k[\Lambda]$$
                 coming from the fact that homomorphisms of group algebras one can actually say much more. For instance, it commutes with base-changes by construction: for every homomorphism between commutative rings $k \to k'$, one has:
                     $$\Diag(\Lambda/k') \cong \Spec k'[\Lambda] \cong \Spec \left(k[\Lambda] \tensor_k k'\right) \cong \Spec k[\Lambda] \x_{\Spec k} \Spec k' \cong \Diag(\Lambda/k) \x_{\Spec k} \Spec k'$$
                 In addition, observe that if a given commutative group $\Lambda$ were to be finitely generated\footnote{Henceforth, we shall refer to finitely generated groups as groups of finite type so that the terminology will line up with those of modules and algebras.} (say, by $\lambda_1, ..., \lambda_n$) then its group $k$-algebra $k[\Lambda]$ would be of finite type as a (commutative) $k$-algebra by virtue of being isomorphic to $k[\lambda_1, ..., \lambda_n]$ (note that the variables $\lambda_1, ..., \lambda_n$ might not be $k[x_1, ..., x_n]$-linearly independent), which in turn implies that the associated diagonalisable group scheme $\Diag(\Lambda/k) \cong \Spec k[\Lambda]$ is of finite type over $\Spec k$; as a result, $\Diag(\Lambda/k)$ is an algebraic group over $\Spec k$ whenever $\Lambda$ is finitely generated (and of course, when $k$ is a field). Since algebraic groups form a full subcategory of the category of group schemes, the above analysis leads to a functor:
-                    $$\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp(\Spec k)$$
+                    $$\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp^{\aff}_{/\Spec k}$$
                 Of course, this functor also commutes with base-changes. 
             \end{remark}
-            \begin{proposition}
-                
+            \begin{definition}[Characters] \label{def: characters_of_algebraic_groups}
+                The group of \textbf{characters} of an algebraic group $G$ over a given field $k$, commonly denoted by $\bbX(G/k)$, is the (commutative) group of homomorphisms $\chi: G \to \G_m$.
+            \end{definition}
+            \begin{proposition}[Pontryagin Duality for algebraic groups] \label{prop: pontryagin_duality_for_algebraic_groups}
+                For a fixed field $k$, the functor $\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp^{\aff}_{/\Spec k}$ is fully faithful and essentially surjective, with quasi-inverse given by the character functor\footnote{Which by definition is nothing but the representable functor $\Diag\Alg\Grp^{\aff}_{/\Spec k}(-, \G_m)$ (note that this is well-defined because $\G_m$ is diagonalisable as it is isomorphic to $\Spec k[\Z]$).}:
+                    $$\bbX: (\Diag\Alg\Grp^{\aff}_{/\Spec k})^{\op} \to \Comm\Grp^{\ft}$$
             \end{proposition}
                 \begin{proof}
                     
                 \end{proof}
-            \begin{proposition}
-                
-            \end{proposition}
+            \begin{corollary}[Diagonalisation is exact] \label{coro: diagonalisation_is_exact}
+                For a fixed field $k$, the functor:
+                    $$\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp^{\aff}_{/\Spec k}$$
+                is exact. 
+            \end{corollary}
                 \begin{proof}
                     
                 \end{proof}
@@ -473,11 +447,54 @@
                     $$\Diag(\Lambda/k) \cong \Diag(\Z/k)^r \x_{\Spec k} \prod_{i = 1}^s \Diag((\Z/p_i\Z)/k)^{e_i} \cong \G_m^r \x_{\Spec k} \prod_{i = 1}^s \mu_{p_i}^{e_i}$$
                 From this, one sees that every torsion-free diagonalisable algebra group is a torus.
             \end{corollary}
-    
-        \subsubsection{Restrictions and inductions; Frobenius Reciprocity}
+            
+            Let us now move on to discussing linear representations of affine group schemes, which we know to correspond to commutative Hopf algebras (cf. example \ref{example: hope_algebra_structures_on_global_sections_of_group_schemes}). In particular, linear representations of affine group schemes shall be considered as so-called \textbf{comodules} over commutative Hopf algebras, which is an interpretation of representations of group schemes that will be of tremendous usefulness later on when we wish to discuss the functoriality of representations with respect to group scheme homomorphisms, which can then be simply thought of as extensions and restrictions of scalars. 
+            
+            \begin{definition}[Equivariant monoidal categories] \label{def: equivariant_monoidal_categories}
+                Let $\calA$ and $\calV$ be monoidal categories. Then, the category $\calV^{\calA}$ of $\calA$-equivariant objects of $\calV$ is the category $\Mon\Func(\calA, \calV)$ of monoidal functors from $\calA$ into $\calV$.
+            \end{definition}
+            \begin{definition}[Linear representations of group schemes] \label{def: linear_representations_of_group_schemes}
+                Suppose that $S$ is a scheme and $G$ is a group scheme over $S$. Additionally, let $\calV$ be a triangulated monoidal category fibred over $(\Sch_{/S})_{\fppf}$ (which we note to also be monoidal). Then, the category of \textbf{$\calV$-valued representations of $G$} is 
+            \end{definition}
+            \begin{definition}[Modules and comodules] \label{def: modules_and_comodules}
+                Suppose that $(\calV, \tensor, \1)$ is a monoidal category. 
+                    \begin{itemize}
+                        \item \textbf{(Modules)} A \textbf{left-module} over an algebra\footnote{Again, assumed to be associative and unital unless specifically stated otherwise.} $(A, \nabla, \eta)$ (also known as a left-$A$-module) is an pair $(M, \lambda)$ consisting of an object $M \in \Ob(\calV)$ and a morphism $\lambda: A \tensor M \to M$ for which the following diagrams commute:
+                            $$
+                                \begin{tikzcd}
+                                	{A \tensor A \tensor M} & {A \tensor M} \\
+                                	{A \tensor M} & M
+                                	\arrow["{\id_A \tensor \lambda}"', from=1-1, to=2-1]
+                                	\arrow["\lambda", from=2-1, to=2-2]
+                                	\arrow["{\nabla \tensor \id_M}", from=1-1, to=1-2]
+                                	\arrow["\lambda", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                            $$
+                                \begin{tikzcd}
+                                	{1 \tensor M} & {A \tensor M} \\
+                                	& M
+                                	\arrow["{\eta \tensor \id_M}", from=1-1, to=1-2]
+                                	\arrow["\lambda", from=1-2, to=2-2]
+                                	\arrow[from=1-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        \item \textbf{(Comodules):} A \textbf{left-comodule} over a coalgebra $A$ is an object $M \in \Ob(\calV)$ which is a left-$A$-module in $\calV^{\op}$. 
+                    \end{itemize}
+                Give any (co)algebra object $A \in \Ob(\calV)$, there is an evident category of left $A$-(co)modules internal to $\calV$ in the above sense, which we denote by ${}^lA\mod$ (respectively, ${}^lA\comod$).
+            \end{definition}
+            \begin{proposition}
+                Suppose that $G$ is an affine group scheme over a commutative ring $k$. Then, $\Rep_k(G)$ shall be monoidal-equivalent to the category of $\Gamma(G, \calO_G)$-comodules internal to the monoidal category $k\mod$ of $k$-modules\footnote{Note that this definition makes sense since $\Gamma(G, \calO_G)$, by virtue of being a Hopf algebra object of the monoidal category $k\mod$, is a coalgebra internal to $k\mod$ \textit{a fortiori}.}.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            
+            In order to be able to effectively discuss linear representations of non-affine group schemes (i.e. those of group schemes instead of merely of constant abstract groups) in a manner mimicking the affine theory, a theory of equivariant quasi-coherent sheaves is needed, as we think of them as generalised linear-algebraic spaces upon which our group schemes shall act. In order to do this, we shall be making use of the fact that structure sheaves of group schemes have natural interpretations as Hopf algebra objects in order to consider equivariant quasi-coherent sheaves as comodules over these special bialgebra objects. 
         
-        \subsubsection{Cohomology of flat group shemes and representability of quotients}
+        \subsubsection{Restrictions and inductions; cohomology of flat group shemes and representability of quotients}
         
-        \subsubsection{Group theory for algebraic groups}
+        \subsubsection{Lie algebras and distributions}
+            
         
-        \subsubsection{Distributions}
+        \subsubsection{Representations of finite group schemes}
