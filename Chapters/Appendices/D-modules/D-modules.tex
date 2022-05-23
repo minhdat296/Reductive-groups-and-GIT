@@ -8,7 +8,7 @@
                 Suppose that $\varphi: R \to S$ is a ring map and that $M, N$ are $S$-modules; in addition, fix a natural number $k \in \N$. An \textbf{differential operator} of order (at most) $k$ from $M$ to $N$ over $R$ is then an $R$-linear map $D: M \to N$ such that for all $f \in R$, the commutator $[D, f] := D(f \cdot (-)) - f \cdot D(-)$ is a differential operator of order (at most) $k - 1$ from $M$ to $N$ over $R$. 
             \end{definition}
             \begin{proposition}[Differential operators act as zero on constants] \label{prop: differential_operators_act_as_zero_on_constants}
-                Suppose $\varphi; R \to S$ i a ring map, that $D: M \to N$ is a finite-order differential operator from an $S$-module $M$ to another $S$-module $N$ over $R$, and that $a \in R$ is some arbitrary element. Then $[D, \varphi(a)] = 0$.
+                Suppose $\varphi: R \to S$ i a ring map, that $D: M \to N$ is a finite-order differential operator from an $S$-module $M$ to another $S$-module $N$ over $R$, and that $a \in R$ is some arbitrary element. Then $[D, \varphi(a)] = 0$.
             \end{proposition}
                 \begin{proof}
                     Because the commutator map $[D, -]: S \to \Hom_R(M, N)$ is $R$-linear as a result of $D: M \to N$ being $R$-linear by definition, we have the following for all $a \in R$ and all $v \in M$, which proves the proposition:
@@ -45,15 +45,48 @@
             \end{convention}
             \begin{proposition}[Filtering differential operators by orders] \label{prop: filtering_differential_operators_by_orders}
                 Suppose that $\varphi:  R \to S$ is a ring map and that $M, N$ are $S$-modules. Then the $S$-module $\Diff_{S/R}(M, N)$ of differential operators from $M$ to $N$ over $R$ is exhaustive\footnote{I.e. $\Diff_{S/R}(M, N) \cong \underset{k \in \N}{\colim} \Diff_{S/R}^k(M, N)$.} with respect to an increasing filtration:
-                    $$\Diff_{S/R}^0(M, N) \subset \Diff_{S/R}^1(M, N) \subset ... \subset \Diff_{S/R}(M, N)$$
+                    $$S \cong \Diff_{S/R}^0(M, N) \subset \Diff_{S/R}^1(M, N) \subset ... \subset \Diff_{S/R}(M, N)$$
                 wherein for all $k \in \N$, the components $\Diff_{S/R}^k(M, N)$ are $S$-submodules of $\Diff_{S/R}(M, N)$ spanned by differential operators from $M$ to $N$ of order equal to $k$. 
             \end{proposition}
                 \begin{proof}
                     Clear from proposition \ref{prop: linear_combinations_of_differential_operators} and convention \ref{conv: orders_of_differential operators}.
                 \end{proof}
             \begin{corollary}[Rings of differential operators] \label{coro: rings_of_differential_operators}
-                For all ring maps $\varphi: R \to S$ and all $S$-modules $M$, the triple $(\Diff_{S/R}(M, M), +, \circ)$ is an $\N$-graded associative and unital $S$-algebra. 
+                For all ring maps $\varphi: R \to S$ and all $S$-modules $M$, the triple $(\Diff_{S/R}(M, M), +, \circ)$ is an $\N$-graded associative and unital $S$-algebra via the increasing filtration of $S$-modules:
+                    $$S \cong \Diff_{S/R}^0(M, M) \subset \Diff_{S/R}^1(M, M) \subset ... \subset \Diff_{S/R}(M, M)$$
+                Also, observe that $\Diff_{S/R}^0(M, M) \cong S$.
             \end{corollary}
+            \begin{convention}
+                For all ring maps $\varphi: R \to S$ and all $S$-modules $M$, we shall abbreviate $\Diff_{S/R}(M, M)$ (respectively, $\Diff_{S/R}^k(M, M)$ for all $k \in \N$) by $\Diff_{S/R}(M)$ (respectively, $\Diff_{S/R}^k(M)$).
+            \end{convention}
+            \begin{proposition}[Principal parts] \label{prop: principal_parts}
+                For all ring maps $\varphi: R \to S$ and all $S$-modules $M$, the assignment:
+                    $$\Diff_{S/R}^k(M, -): S\mod \to S\mod$$
+                    $$N \mapsto \Diff_{S/R}^k(M, N)$$
+                is not only functorial for every $k \in \N$, but represented by an $S$-module $P_{S/R}^k(M)$, called the principal part of order $k$ of the $S$-module $M$.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[Canonical projective resolutios for modules of differential operators] \label{coro: canonical_projective_resolutions_for_modules_of_differential_operators}
+                Suppose that $\varphi:  R \to S$ is a ring map and that $M$ is an $S$-module. Then, there is a canonical projective resolution for the $S$-module $M$ given by:
+                    $$\cdots \to P_{S/R}^2(M) \to P_{S/R}^1(M) \to P_{S/R}^0(M) \cong M$$
+            \end{corollary}
+            
+            \begin{lemma}[Rings of differential operators are almost commutative] \label{lemma: rings_of_differential_operators_are_almost_commutative}
+                For all ring maps $\varphi: R \to S$ and all $S$-modules $M$, consider the following increasing filtration on $\Diff_{S/R}(M)$:
+                    $$S \cong \Diff_{S/R}^0(M) \subset \Diff_{S/R}^{\leq 1}(M) \subset ... \subset \Diff_{S/R}^{\leq k}(M) \subset ... \subset \Diff_{S/R}(M)$$
+                wherein $\Diff_{S/R}^{\leq k}(M) := \bigoplus_{0 \leq i \leq k} \Diff_{S/R}^i(M)$. With respect to this filtration, the associated graded $S$-algebra $\gr_{\bullet} \Diff_{S/R}(M)$ is commutative (and in that sense, one says that $\Diff_{S/R}(M)$ is \textbf{almost commutative}).
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}
+                
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
     
         \subsubsection{Categories of D-modules on smooth varieties}
         
