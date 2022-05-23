@@ -1,0 +1,83 @@
+\begin{definition}[Graded objects] \label{def: graded_objects}
+                Suppose that $\calA$ is a category and $\calK$ is a (co)filtered category. Its associated category of \textbf{$\calK$-(co)graded objects}, denoted by $\gr_{\calK}(\calA)$ (respectively $\gr^{\calK}(\calA)$; note the similarity with the difference between homological and cohomology indexing), is nothing but the functor category $\calA^{\calK}$. When $\calK \cong \Z$ viewed either as a filtered or a cofiltred category, we shall simply say \say{(co)graded} instead of \say{$\Z$-(co)graded} and we shall only write $\gr_{\bullet}(\calA)$ (respectively $\gr^{\bullet}(\calA)$) for the associated category of $\Z$-(co)graded objects of $\calA$.
+            \end{definition}
+            \begin{convention}
+                Technically speaking, one need not specify whether or not one is speaking of graded or cograded objects, as the directionalities of the diagrams at play are completely determined by the indexing category $\calK$. However, with index categories such as $\Z$ with no initial objects (n)or terminal objects and as a result have ambiguous directionalities, it pays to be specific. 
+                
+                In the case where the indexing category is $\Z \x \Z$ (or any full subcategory thereof), we shall often refer to the corresponding (co)graded objects as being \textbf{bi(co)graded}. For bigraded objects, the directionality is typically as follows
+                    $$
+                        \{M_{i, j}\}_{(i, j) \in \Z \x \Z} := 
+                        \left\{
+                            \begin{tikzcd}
+                        	\ddots & \vdots & \vdots \\
+                        	\cdots & {M_{1, 1}} & {M_{1, 2}} & \cdots \\
+                        	\cdots & {M_{2, 1}} & {M_{2,2}} & \cdots \\
+                        	& \vdots & \vdots & \ddots
+                        	\arrow[from=2-2, to=3-2]
+                        	\arrow[from=3-2, to=4-2]
+                        	\arrow[from=3-3, to=4-3]
+                        	\arrow[from=2-3, to=3-3]
+                        	\arrow[from=2-2, to=2-3]
+                        	\arrow[from=3-2, to=3-3]
+                        	\arrow[from=3-3, to=3-4]
+                        	\arrow[from=2-3, to=2-4]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow[from=1-3, to=2-3]
+                        	\arrow[from=3-1, to=3-2]
+                        \end{tikzcd}
+                        \right\}
+                    $$
+                
+                Objects graded by $\Z \x \Z^{\op}$ or $\Z^{\op} \x \Z$ (or any full subcategory thereof) are said to be \textbf{mix-graded} and often written with mixed indexing $M_i^j$.
+            \end{convention}
+            \begin{example}
+                Let $R$ be a ring (which need not be commutative) and suppose that $I$ is a right-$R$-ideal. Then, a natural $\Z$-graded object of the category $R^r\mod$ of right-$R$-modules is $\{I^k/I^{k + 1}\}_{k \in \Z}$.
+            \end{example}
+            \begin{convention}[Shifts] \label{conv: shifts_of_graded_objects}
+                Suppose that $M_{\bullet} := \{M_k\}_{k \in \Z}$ is a $\Z$-graded object of a category $\calA$. Then, for each natural number $d \in \N$, we shall write $M_{\bullet}[d]$ to mean the graded object $\{M_k[d]\}_{k \in \Z} := \{M_{k + d}\}_{i \in \Z}$. Observe that for any pair $M_{\bullet}, N_{\bullet} \in \gr_{\bullet}(\calA)$ of graded objects of $\calA$ and any natural number $d \in \N$, we have the following easily verifiable identity:
+                    $$\Hom_{\gr(\calA)}(M_{\bullet}, N_{\bullet}[d]) \cong \Hom_{\gr(\calA)}(M_{\bullet}[-d], N_{\bullet})$$
+                For $\Z$-cograded objects, we flip the signs of shifts, i.e. if $M^{\bullet} \in \gr^{\bullet}(\calA)$ is a cograded object then we shall write $M^{\bullet}[-d]$ to mean $\{M^i[-d]\}_{k \in \Z} := \{M^{i + d}\}_{k \in \Z}$.
+                
+                Bi(co)graded and mix-graded objects are shifted entrywise, e.g.:
+                    $$
+                        \{M_{i, j}[d, e]\} := 
+                        \left\{
+                            \begin{tikzcd}
+                        	\ddots & \vdots & \vdots \\
+                        	\cdots & {M_{i + d, j + e}} & {M_{i + d, (j + 1) + e}} & \cdots \\
+                        	\cdots & {M_{(i + 1) + d, j + e}} & {M_{(i + 1) + d, (j + 1) + e}} & \cdots \\
+                        	& \vdots & \vdots & \ddots
+                        	\arrow[from=2-2, to=3-2]
+                        	\arrow[from=3-2, to=4-2]
+                        	\arrow[from=3-3, to=4-3]
+                        	\arrow[from=2-3, to=3-3]
+                        	\arrow[from=2-2, to=2-3]
+                        	\arrow[from=3-2, to=3-3]
+                        	\arrow[from=3-3, to=3-4]
+                        	\arrow[from=2-3, to=2-4]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow[from=1-3, to=2-3]
+                        	\arrow[from=3-1, to=3-2]
+                        \end{tikzcd}
+                        \right\}
+                    $$
+                and so on.
+            \end{convention}
+            
+            \begin{definition}[Filtrations] \label{def: filtrations}
+                An \textbf{increasing filtration} of objects in a category $\calA$ is a diagram:
+                    $$M_{\bullet}: \N \to \calA$$
+                    $$i \mapsto M_i$$
+                such that for all $i \in \N$, the transition morphism $M_i \to M_{i + 1}$ is a monomorphism. Dually, a \textbf{decreasing filtration} of objects in $\calA$ is a diagram:
+                    $$M^{\bullet}: \N^{\op} \to \calA$$
+                    $$i \mapsto M^i$$
+                such that for all $i \in \N$, the transition morphism $M^{i + 1} \to M^i$ is a monomorphism.
+            \end{definition}
+            \begin{remark}
+                Observe that filtrations are special instances of $\N$-graded and $\N^{\op}$-graded objects and as such enjoy all of their general properties.
+            \end{remark}
+            \begin{definition}[Associated graded objects] \label{def: associated_graded_objects}
+                Inside a category $\calA$, consider an increasing filtration $M_0 \subseteq M_1 \subseteq M_2 \subset ...$ 
+            \end{definition}
