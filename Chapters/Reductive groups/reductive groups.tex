@@ -28,14 +28,14 @@
                 One reason that we needed the notion of kernels of homomorphisms of presheaves of groups on $\Psh((\Sch_{/S})_{\fppf})$ (with $S$ being some fixed base scheme) rather than the more concrete\footnote{Not that the two differ much from a categorical point of view.} notion of kernels of homomorphisms between group $S$-schemes is because it is not always guaranteed that for any $S$-scheme $X$, the automorphism group $\Aut(X/S)$ is representable by an $S$-scheme. 
             \end{remark}
             \begin{definition}[Normalisers] \label{def: normalisers}
-                Suppose that $S$ is a scheme, $G$ is a group $S$-scheme and $i: X \hookrightarrow G$ is a monomorphism of $S$-schemes. Then, the \textbf{normaliser} of $X$ inside $G$ (or rather, associated to the monomorphism $i: X \hookrightarrow G$), denoted by $\Norm_G(X)$, is the scheme-theoretic kernel $\ker \Ad_G$ of the adjoint action of $G$ on the subscheme $X$.
+                Suppose that $S$ is a scheme, $G$ is a group $S$-scheme and $i: X \hookrightarrow G$ is a monomorphism of $S$-schemes. Then, the \textbf{normaliser} of $X$ inside $G$ (or rather, associated to the monomorphism $i: X \hookrightarrow G$), denoted by $\Norm_{G/S}(X)$, is the scheme-theoretic kernel $\ker \Ad_G$ of the adjoint action of $G$ on the subscheme $X$.
             \end{definition}
             \begin{definition}[Transporters] \label{def: transporters}
                 Suppose that $S$ is a scheme and $G$ is a group scheme over $S$. In addition, suppose that we are given two monomorphisms $i: X \hookrightarrow G$ and $j: Y \hookrightarrow G$ of $S$-schemes. The \textbf{transporter} from $X$ to $Y$ inside $G$ (or rather, from the monomorphism $i: X \hookrightarrow G$ to the monomorphism $j: Y \hookrightarrow G$) is thus the following pullback in the category of group $S$-schemes:
                     $$
                         \begin{tikzcd}
-                        	{\Transporter_G(X, Y)} & {\Norm_G(Y)} \\
-                        	{\Norm_G(X)} & G
+                        	{\Transporter_{G/S}(X, Y)} & {\Norm_{G/S}(Y)} \\
+                        	{\Norm_{G/S}(X)} & G
                         	\arrow[from=1-1, to=2-1]
                         	\arrow[from=2-1, to=2-2]
                         	\arrow[from=1-1, to=1-2]
@@ -45,7 +45,7 @@
                     $$
             \end{definition}
             \begin{remark}[Transporters and normalisers]
-                It is not hard to see that given a fixed group $S$-scheme $G$ and a fixed monomorphism $i: X \hookrightarrow G$, we have a natural isomorphism $\Norm_G(X) \cong \Transporter_G(X, X)$. 
+                It is not hard to see that given a fixed group $S$-scheme $G$ and a fixed monomorphism $i: X \hookrightarrow G$, we have a natural isomorphism $\Norm_{G/S}(X) \cong \Transporter_{G/S}(X, X)$. 
             \end{remark}
             \begin{lemma}[Representability of automorphism groups of schemes] \label{lemma: representability_of_automorphism_groups_of_schemes}
                 
@@ -79,7 +79,7 @@
                     $$\Diag: \Comm\Grp^{\op} \to \Diag\Grp\Sch^{\aff}_{/\Spec k}$$
                     $$\Lambda \mapsto \Spec k\<\Lambda\>$$
                 coming from the fact that homomorphisms of group algebras one can actually say much more. For instance, it commutes with base-changes by construction: for every homomorphism between commutative rings $k \to k'$, one has:
-                    $$\Diag(\Lambda/k') \cong \Spec k'[\Lambda] \cong \Spec \left(k\<\Lambda\> \tensor_k k'\right) \cong \Spec k\<\Lambda\> \x_{\Spec k} \Spec k' \cong \Diag(\Lambda/k) \x_{\Spec k} \Spec k'$$
+                    $$\Diag(\Lambda/k') \cong \Spec k'\<\Lambda\> \cong \Spec \left(k\<\Lambda\> \tensor_k k'\right) \cong \Spec k\<\Lambda\> \x_{\Spec k} \Spec k' \cong \Diag(\Lambda/k) \x_{\Spec k} \Spec k'$$
                 In addition, observe that if a given commutative group $\Lambda$ were to be finitely generated\footnote{Henceforth, we shall refer to finitely generated groups as groups of finite type so that the terminology will line up with those of modules and algebras.} (say, by $\lambda_1, ..., \lambda_n$) then its group $k$-algebra $k\<\Lambda\>$ would be of finite type as a (commutative) $k$-algebra by virtue of being isomorphic to $k[\lambda_1, ..., \lambda_n]$ (note that the variables $\lambda_1, ..., \lambda_n$ might not be $k[x_1, ..., x_n]$-linearly independent), which in turn implies that the associated diagonalisable group scheme $\Diag(\Lambda/k) \cong \Spec k\<\Lambda\>$ is of finite type over $\Spec k$; as a result, $\Diag(\Lambda/k)$ is an algebraic group over $\Spec k$ whenever $\Lambda$ is finitely generated (and of course, when $k$ is a field). Since algebraic groups form a full subcategory of the category of group schemes, the above analysis leads to a functor:
                     $$\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp^{\aff}_{/\Spec k}$$
                 Of course, this functor also commutes with base-changes. 

@@ -1,1 +1,469 @@
 \section{Algebraic groups}
+    \subsection{Group schemes}
+        \subsubsection{Definition and general properties}
+            \begin{definition}[Group schemes] \label{def: group_schemes}
+                A \textbf{group scheme} over a given scheme $S$ is a group object in the category of $S$-schemes. Note that this is a well-defined notion, as the category of $S$-schemes has all finite products.
+                
+                In more details, a group scheme over $S$ is an $S$-scheme $G$ equipped with morphisms $m: G \x_S G \to G$, $e: S \to G$, and $i: G \to G$ such that the following diagrams\footnote{The isomorphism in the second diagram is the canonical one and the unnamed arrow in the third diagram is the structural morphism of $G$ over $S$.} commute:
+                    $$
+                        \begin{tikzcd}
+                        	{G \x_S G \x_S G} & {G \x_S G} \\
+                        	{G \x_S G} & G
+                        	\arrow["{\id_{G/S} \x_S m}"', from=1-1, to=2-1]
+                        	\arrow["m", from=2-1, to=2-2]
+                        	\arrow["{m \x_S \id_{G/S}}", from=1-1, to=1-2]
+                        	\arrow["m", from=1-2, to=2-2]
+                        \end{tikzcd}
+                    $$
+                    $$
+                        \begin{tikzcd}
+                        	{G \x_S S} && {S \x_S G} \\
+                        	{G \x_S G} && {G \x_S G} \\
+                        	& G
+                        	\arrow["m"', from=2-1, to=3-2]
+                        	\arrow["{e \x_S \id_{G/S}}", from=1-3, to=2-3]
+                        	\arrow["m", from=2-3, to=3-2]
+                        	\arrow["{\id_{G/S} \x_S e}"', from=1-1, to=2-1]
+                        	\arrow["\cong", from=1-1, to=1-3]
+                        \end{tikzcd}
+                    $$
+                    $$
+                        \begin{tikzcd}
+                        	& G \\
+                        	{G \x_S G} && {G \x_S G} \\
+                        	& S \\
+                        	{G \x_S G} && {G \x_S G} \\
+                        	& G
+                        	\arrow["m", from=4-3, to=5-2]
+                        	\arrow["m"', from=4-1, to=5-2]
+                        	\arrow["{\id_{G/S} \x_S i}"', from=2-1, to=4-1]
+                        	\arrow["{i \x_S \id_{G/S}}", from=2-3, to=4-3]
+                        	\arrow["{\Delta_{G/S}}"', from=1-2, to=2-1]
+                        	\arrow["{\Delta_{G/S}}", from=1-2, to=2-3]
+                        	\arrow["e", from=3-2, to=5-2]
+                        	\arrow[from=1-2, to=3-2]
+                        \end{tikzcd}
+                    $$
+                As is the case in general categories with enough pullbacks, there is a (non-full) subcategory $\Grp\Sch_{/S} \subset \Sch_{/S}$ spanned by group $S$-schemes and homomorphisms between them, i.e. morphisms $\varphi: (H, m_H, e_H, i_H) \to (G, m_G, e_G, i_G)$ such that the following diagram commutes:
+                    $$
+                        \begin{tikzcd}
+                        	{H \x_S H} & {G \x_S G} & {} \\
+                        	H & G
+                        	\arrow["{m_H}"', from=1-1, to=2-1]
+                        	\arrow["{m_G}", from=1-2, to=2-2]
+                        	\arrow["\varphi", from=2-1, to=2-2]
+                        	\arrow["{\varphi \x_S \varphi}", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{remark}[Group scheme homomorphisms are group homomorphisms]
+                Again, as in the case in general categories with enough pullbacks, group scheme homomorphisms preserve identities and inverses. This is easy to check.
+            \end{remark}
+            \begin{remark}[Pullbacks of group schemes] \label{remark: pullbacks_of_group_schemes}
+                If $f: S' \to S$ is a morphism of schemes and $G$ is a group scheme over $S$, then the pullback $G \x_{S, f} S'$ will be group scheme over $S'$. This is an easy consequence of the fact that limits commute.
+            \end{remark}
+            \begin{remark}[Open and closed subgroup schemes] \label{remark: open_and_closed_subgroup_schemes}
+                Because limits commute, should $G$ be a group scheme over a given base scheme $S$ and $\iota: H \hookrightarrow G$ be a monomorphism of $S$-schemes (such as open immersions or closed immersions), then $H$ should be a subgroup $S$-scheme of $G$. One thing that is worth checking is that the identity map $e_G: S \to G$ is a monomorphism and therefore the trivial group $S$-scheme $S$ is a subgroup $S$-scheme of $G$.   
+            \end{remark}
+            \begin{definition}[Actions of group schemes] \label{def: actions_of_group_schemes}
+                Let $S$ be a scheme, $X$ be an $S$-scheme, and $G$ a group $S$-scheme. An \textbf{left-action}\footnote{Right-actions are defined analogously. We let our dear reader figure this out for themselves.} of $G$ on $X$ over $S$ is thus a morphism of $S$-schemes $\alpha: G \x_S X \to X$ such that the following diagrams commute:
+                    $$
+                        \begin{tikzcd}
+                        	{G \x_S G \x_S X} & {G \x_S X} \\
+                        	{G \x_S X} & X
+                        	\arrow["{m \x_S \id_{X/S}}"', from=1-1, to=2-1]
+                        	\arrow["\alpha", from=2-1, to=2-2]
+                        	\arrow["{\id_{G/S} \x_S \alpha}", from=1-1, to=1-2]
+                        	\arrow["\alpha", from=1-2, to=2-2]
+                        \end{tikzcd}
+                    $$
+                    $$
+                        \begin{tikzcd}
+                        	X \\
+                        	{G \x_S X} & X
+                        	\arrow["\alpha", from=2-1, to=2-2]
+                        	\arrow["{e \x_S \id_{X/S}}"', from=1-1, to=2-1]
+                        	\arrow["{\id_{X/S}}", from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{definition}[Action groupoids] \label{def: action_groupoids}
+                Let $S$ be a scheme and let $G$ be a group $S$-scheme which acts on an $S$-scheme $X$ via $\alpha: G \x_S X \to X$. Then, the \textbf{action groupoid} of the $G$-action $\alpha$ shall be the span $\alpha, \pr_2: G \x_S X \toto X$. 
+            \end{definition}
+            \begin{remark}[Action groupoids are internal groupoids]
+                Definition \ref{def: action_groupoids}, as it stands, does not give us a legitimate groupoid internal to the category of $S$-schemes. This, however, is not hard to check: for any group $S$-scheme $(G, m, e, i)$ acting on an $S$-scheme $X$ via $\alpha: G \x_S X \to X$, simply take the inversion map to be the morphism of $S$-schemes $i \x_S \id_{X/S}: G \x_S X \to G \x_S X$.
+            \end{remark}
+            \begin{convention}[Action groupoids of group schemes] \label{conv: action_groupoids_of_group_schemes}
+                Usually, the action groupoid of a given group $S$-scheme $G$ is taken to be the one wherein the action $\alpha: G \x_S G \to G$ is the multiplication map.
+            \end{convention}
+            
+            Before we can discuss properties of group schemes, let us take a brief detour and discuss certain relevant properties of diagonals of (morphisms of) schemes, particularly how they pertain to separatedness.
+            \begin{definition}[(Quasi-)separatedness] \label{def: (quasi)_separatedness}
+                A morphism $f: X \to S$ of schemes is said to be \textbf{separated} (respectively, \textbf{quasi-separated}) if and only if its diagonal $\Delta_{X/S}$ is closed (respectively, quasi-compact). 
+            \end{definition}
+            \begin{remark}
+                Obviously, being separated implies being quasi-separated.
+            \end{remark}
+            \begin{lemma}[Diagonals of affines are closed] \label{lemma: diagonals_of_affines_are_closed}
+                The diagonal of an affine morphism is closed.
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[Diagonals are locally closed immersions] \label{prop: diagonals_of_schemes_are_locally_closed_immersions}
+                The diagonal of any morphism of schemes is a locally closed immersion.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[Affines are separated] \label{coro: affines_are_separated}
+                Affine schemes are always separated. More generally, affine morphisms are separated. 
+            \end{corollary}
+            \begin{example}[A scheme that is not quasi-separated] \label{example: a_scheme_that_is_not_quasi_separated}
+                Let $k$ be a field and let $X$ be the $k$-scheme given by gluing two copies of $\Spec k[x_1, x_2, ...]$ along the complement of the closed subscheme $\Spec k \cong \Spec k[x_1, x_2, ...]/(x_1, x_2, ...)$ inside $\Spec k[x_1, x_2, ...]$, i.e. as the following canonical pushout of $k$-schemes:
+                    $$
+                        \begin{tikzcd}
+                        	{\Spec k[x_1, x_2, ...] \setminus \Spec k} & {\Spec k[x_1, x_2, ...]} \\
+                        	{\Spec k[x_1, x_2, ...]} & X
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                        \end{tikzcd}
+                    $$
+                We thus see that the topological preimage of $\Spec k[x_1, x_2, ...] \x_{\Spec k} \Spec k[x_1, x_2, ...]$ under the diagonal morphism $\Delta_{\Spec k[x_1, x_2, ...]/\Spec k}$ is the complement $\Spec k[x_1, x_2, ...] \setminus \Spec k$, which is very clearly not quasi-compact.
+            \end{example}
+            \begin{proposition}[Permanence of (quasi-)separatedness] \label{prop: permanence_of_quasi_separatedness}
+                \noindent
+                \begin{enumerate}
+                    \item (Quasi-)separatedness is preserved by compositions. In fact, (quasi-)separatedness the 2-out-of-3 property, i.e. for any given commutative triangle of schemes as follows:
+                        $$
+                            \begin{tikzcd}
+                            	X & Y \\
+                            	& Z
+                            	\arrow["f", from=1-1, to=1-2]
+                            	\arrow["g", from=1-2, to=2-2]
+                            	\arrow["h"', from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    if any two of the three arrows are (quasi-)separated morphisms then the remaining one will also be a (quasi-)separated morphism.
+                    \item (Quasi-)separatedness is preserved by base-changes.
+                \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{lemma}[A topological criterion for (quasi-)separatedness] \label{lemma: topological_criterion_for_(quasi)_separatedness}
+                
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{lemma}[An algebraic criterion for (quasi-)separatedness] \label{lemma: algebraic_criterion_for_(quasi)_separatedness}
+                
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[A scheme-theoretic criterion for (quasi)-separatedness] \label{prop: scheme_theoretic_criterion_for_(quasi)_separatedness}
+                Let $S$ be a scheme, let $X, Y$ be $S$-schemes, and let $f: T \to S$ be a morphism of schemes. Then, the canonically induced morphism $X \x_T Y \to X \x_S Y$ is an immersion which will be closed (respectively, quasi-compact) if $f: T \to S$ is separated (respectively, quasi-separated).  
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[Sections are immersions] \label{coro: sections_are_immersions}
+                Let $f: X \to S$ be a morphism of schemes and $s: S \to X$ be a section thereof, i.e. a morphism such that $f \circ s = \id_S$. Then, $s: S \to X$ shall be an immersion that is closed (respectively, quasi-compact) when $f: X \to S$ is separated (respectively, quasi-separated).
+            \end{corollary}
+            
+            We are now ready to establish a criterion for a given group scheme to be (quasi-)separated.
+            \begin{proposition}[A criterion for (quasi-)separatedness for group schemes] \label{prop: (quasi)_separatedness_criterion_for_group_schemes}
+                Let $S$ be a scheme and $(G, m, e, i)$ be a group $S$-scheme. Then, $G$ is separated (respectively, quasi-separated) over $S$ if and only if the identity $e: S \to G$ is a closed immersion (respectively, quasi-compact).
+            \end{proposition}
+                \begin{proof}
+                    Suppose first of all that the identity morphism $e: S \to G$ is a closed immersion (respectively, quasi-compact) and recall that by defintion, a scheme is separated (respectively, quasi-separated) if and only if its diagonal is a closed immersion (respectively, quasi-compact), meaning that we shall have to show that $\Delta_{G/S}: G \to G \x_S G$ is a closed immersion (respectively, quasi-compact). To that end, consider the following diagram (wherein the unnamed arrow is the structural morphism defining $G$ as an $S$-scheme):
+                        $$
+                            \begin{tikzcd}
+                            	G & {G \x_S G} \\
+                            	S & G
+                            	\arrow["{\Delta_{G/S}}", from=1-1, to=1-2]
+                            	\arrow["e", from=2-1, to=2-2]
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow["{m \circ (i \x_S \id_{G/S})}", from=1-2, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    It is not hard to check that this is a pullback square in the category of $S$-schemes, and since closed immersions (respecitvely, quasi-compactness) are preserved by pullbacks (cf. \cite[\href{https://stacks.math.columbia.edu/tag/01JY}{Tag 01JY}]{stacks} and respectively, \cite[\href{https://stacks.math.columbia.edu/tag/01K5}{Tag 01K5}]{stacks}), $e: S \to G$ being a closed immersion implies that $\Delta_{G/S}: G \to G \x_S G$ is also a closed immersion (respectively, quasi-compact). By definition, this means that $G$ is separated (respectively, quasi-separated) over $S$.
+                    
+                    Conversely, suppose that $G$ is separated (respectively, quasi-separated) over $S$. Then, note that because $e: S \to G$ is, by definition, a section of the structural morphism $G \to S$ that defines $G$ as an $S$-scheme, one can apply corollary \ref{coro: sections_are_immersions} directly to see that $e: S \to G$ must be a closed immersion (respectively, quasi-compact).
+                \end{proof}
+        
+        \subsubsection{Group schemes over fields and algebraic groups}
+            \begin{convention}
+                Henceforth, we work over a fixed field $k$.
+            \end{convention}
+            
+            \begin{proposition}[Group schemes over fields are separated] \label{prop: group_schemes_over_fields_are_separated}
+                Any group scheme $(G, m, e, i)$ over $\Spec k$ is separated. 
+            \end{proposition}
+                \begin{proof}
+                    From proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, we know that $G$ is separated over $\Spec k$ if and only if the identity morphism $e: \Spec k \to G$ is a closed immersion, but this is self-evident.
+                \end{proof}
+            
+            \begin{proposition}[Multiplication maps of group schemes over fields are open] \label{prop: multiplication_maps_of_group_schemes_over_fields_are_open}
+                Suppose that $(G, m, e, i)$ is a group scheme over $\Spec k$. Then, the multiplication map $m: G \x_{\Spec k} G \to G$ is open.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            
+            \begin{lemma}[Irreducibility, quasi-compactness, and connectedness] \label{lemma: irreducibility_quasi_compactness_connectedness_of_group_schemes_over_fields}
+                For group schemes over fields, connectedness implies irreducibility, which in turn implies quasi-compactness. 
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof} 
+            \begin{proposition}[Existence, uniqueness, and geometric irreducibility of connected components of the identity] \label{prop: existence_of_identity_components_of_group_schemes_over_fields}
+                Let $G$ be a group scheme over $\Spec k$. Then:
+                    \begin{enumerate}
+                        \item at all points $g \in |G|$, the corresponding stalk of the structure sheaf $\calO_{G, g}$ has a unique minimal prime ideal, and
+                        \item there is a unique geometrically irreducible connected $k$-subscheme $G^{\circ} \subseteq G$ such that $e \in |G^{\circ}|$, called the \textbf{connected component of the identity} or simply the \textbf{identity component}.
+                    \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item 
+                        \item 
+                    \end{enumerate}
+                \end{proof}
+            \begin{corollary}[Identity components are quasi-compact over fields]
+                Let $G$ be group scheme over $\Spec k$. Then the connected component of the identity $G^{\circ}$, by virtue of being connected, is quasi-compact. 
+            \end{corollary}
+                
+            \begin{lemma}[Nilradicals of tensor products] \label{lemma: nilradicals_of_tensor_products}
+                Let $k$ be a field and let $R, S$ be commutative $k$-algebras. Then, ${}^{\red}(R \tensor_k S) \cong {}^{\red}R \tensor_k {}^{\red}S$.
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[Associated reduced group scheme] \label{prop: associated_reduced_group_scheme}
+                Let $G$ be a group scheme over $\Spec k$. Then the associated reduced scheme ${}^{\red}G$ is a closed subgroup scheme of $G$.
+            \end{proposition}
+                \begin{proof}
+                    That ${}^{\red}G$ is a closed subscheme over $\Spec k$ of $G$ is obvious by construction. One can then apply lemma \ref{lemma: nilradicals_of_tensor_products} directly to show that ${}^{\red}G$ inherits its group structure from $G$.
+                \end{proof}
+                
+            \begin{proposition}[Immersions of group schemes over fields are closed] \label{prop: subgroup_schemes_over_fields_are_closed}
+                Let $k$ be a field and $\varphi: H \to G$ be a group $k$-scheme homomorphism. If $\varphi$ is an immersion of $k$-schemes then it will in fact be a closed immersion.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{remark}
+                Proposition \ref{prop: subgroup_schemes_over_fields_are_closed} does not imply that any subscheme of group schemes over fields is always closed, only that subgroup schemes are. For instance, for any field $k$, $(\GL_n)_k$ admits $(\SL_n)_k$ as a closed subscheme over $\Spec k$, but not $\Spec k[x_1, x_2, ..., x_{n^2}]\left[\frac{1}{\det}, \frac{1}{x_{12}}\right]$, which is very obviously open.
+            \end{remark}
+            \begin{corollary}[Identity components are closed over fields]
+                Let $G$ be group scheme over $\Spec k$. Then its identity component $G^{\circ}$, by virtue of being a subscheme of $G$, is a closed subgroup scheme of $G$ over $\Spec k$.
+            \end{corollary}
+                
+        \subsubsection{On the smoothness of algebraic groups}
+            Now, one of the most oustanding properties of group schemes is that in many cases, they are smooth; in fact, algebraic groups over fields of characteristic $0$ are always smooth, and those over fields of positive characteristics are smooth under rather mild hypotheses. To be able to establish these results pertaining to smoothness, however, one will have to conduct some analysis of differential forms on group schemes. Actually, thanks to proposition \ref{prop: (quasi)_separatedness_criterion_for_group_schemes}, it shall suffice to understand the behaviour of modules of K\"ahler differentials associated to (closed) immersions.
+            
+            We begin by recalling the notion of the \textbf{conormal sheaf} of an immersion, along with some relevant material on the behaviour of quasi-coherent sheaves with respect to closed immersions. 
+            \begin{lemma}[Quasi-coherent sheaves on closed subschemes] \label{lemma: quasi_coherent_sheaves_on_closed_subschemes}
+                \cite[\href{https://stacks.math.columbia.edu/tag/01QY}{Tag 01QY}]{stacks} Suppose that $X$ is a scheme and that $i: Z \hookrightarrow X$ is a closed subscheme therein, corresponding to a quasi-coherent ideal sheaf $\calI_{Z/X} \subset \calO_X$. In such a situation, the pushforward functor $i_*: \QCoh(Z)\to \QCoh(X)$ will be an exact full faithful embedding whose essential image are quasi-coherent $\calO_X$-modules $\calF \in \QCoh(X)$ such that $\calI_{Z/X} \calF = 0$.
+            \end{lemma}
+            \begin{convention}[Closures and boundaries] \label{conv: closures_and_boundaries}
+                From now on, if $i: Z \hookrightarrow X$ be an immersion of ringed spaces, then we shall denote the its topological closure by $\bar{i}: \bar{Z} \hookrightarrow X$ and boundary by $\del Z := \bar{Z} \setminus Z$. 
+            \end{convention}
+            \begin{definition}[(Co)normal sheaves of closed immersions] \label{def: (co)normal_sheaves_of_closed_immersions}
+                Suppose that $X$ is a scheme and that $i: Z \hookrightarrow X$ is a locally closed subscheme therein, corresponding to a quasi-coherent ideal sheaf $\calI_{Z/X} \subset \calO_X$. The \textbf{conormal sheaf} associated to the locally closed immersion $i: Z \hookrightarrow X$ is the quasi-coherent $\calO_Z$-module $\calN_{Z/X}^{\vee} \cong i^*(\calI_{Z/X}/\calI_{Z/X}^2)$. The dual notion is that of so-called \textbf{normal sheaves}: the normal sheaf associated to a locally closed immersion $i: Z \hookrightarrow X$ is the module-theoretic dual of $\calN_{Z/X}^{\vee}$, i.e. the quasi-coherent $\calO_Z$-module $\calN_{Z/X} \cong \Hom_{\calO_Z}(i^*(\calI_{Z/X}/\calI_{Z/X}^2), \calO_Z)$. 
+                
+                It is also possible to define (co)normal sheaves for locally closed immersions: should $Z \subseteq X$ be a locally closed subscheme then its associated (co)normal sheaf could be defined with respect to the closed immersion $Z \subseteq X \setminus \del Z$.
+            \end{definition} 
+            \begin{remark}[Extension-by-zero of conormal sheaves]
+                Let $i: Z \hookrightarrow X$ be a closed immersion. Because the ideal sheaf $\calI_{Z/X}/\calI_{Z/X}^2$ is annihilated by $\calI_{Z/X}$, one gets by lemma \ref{lemma: quasi_coherent_sheaves_on_closed_subschemes} (which can be understood to imply that the adjunction counit $\eta_{Z/X}: \id_{\QCoh(X)} \to i_*i^*$ is a natural isomorphism), that there is a canonical isomorphism of quasi-coherent $\calO_X$-modules:
+                    $$\eta_{Z/X}(\calI_{Z/X}/\calI_{Z/X}^2): \calI_{Z/X}/\calI_{Z/X}^2 \to i_*i^*(\calI_{Z/X}/\calI_{Z/X}^2)$$
+                This, in turn, induces a canonical isomorphism $\calI_{Z/X}/\calI_{Z/X}^2 \cong i_*\calN_{Z/X}^{\vee}$ of quasi-coherent $\calO_X$-modules.
+            \end{remark}
+            The following result illustrates the necessity for the introduction of conormal sheaves. 
+            \begin{proposition}[Conormal sheaves of diagonals] \label{prop: conormal_sheaves_of_diagonals}
+                \cite[\href{https://stacks.math.columbia.edu/tag/08S2}{Tag 08S2}]{stacks} Let $S$ be a scheme, let $X$ be an $S$-scheme. Then, the conormal sheaf $\calN_{\Delta_{X/S}}^{\vee}$ of the diagonal\footnote{Which is indeed a locally closed immersion by proposition \ref{prop: diagonals_of_schemes_are_locally_closed_immersions}, and therefore on can define $\calN_{\Delta_{X/S}}^{\vee}$ along the induced closed immersion $X \subseteq (X \x_S X) \setminus \del \Delta_{X/S}(X)$.} $\Delta_{X/S}: X \to X \x_S X$ is canonically isomorphic (as a quasi-coherent $\calO_X$-module) to the module of relative K\"ahler differentials $\Omega^1_{X/S}$.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[Flat base-changes of conormal sheaves] \label{prop: flat_base_changes_of_conormal_sheaves}
+                Let $f: X \to X'$ be a flat morphism of schemes and $i': Z' \hookrightarrow X'$ is a closed immersion of schemes, and consider the following pullback square:
+                    $$
+                        \begin{tikzcd}
+                        	Z & X \\
+                        	{Z'} & {X'}
+                        	\arrow["{f|_Z}"', from=1-1, to=2-1]
+                        	\arrow["{i'}", hook, from=2-1, to=2-2]
+                        	\arrow["f", from=1-2, to=2-2]
+                        	\arrow["i", hook, from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                Then, there is a canonical isomorphism $(f|_Z)^* \calN_{Z'/X'}^{\vee} \to \calN_{Z/X}^{\vee}$ of quasi-coherent $\calO_Z$-modules. 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{lemma}[A flatness criterion for action groupoids of group schemes] \label{lemma: flatness_criterion_for_action_groupoids_of_group_schemes}
+                For some given scheme $S$, suppose that $\psi: T \to G$ is a morphism from a flat $S$-scheme $T$ to a group $S$-scheme $(G, m, e, i)$. Then, the composition $m \circ (\psi \x_S \id_{G/S}): T \x_S G \to G$ is flat as well.
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}
+                The action groupoid of a flat group scheme (cf. convention \ref{conv: action_groupoids_of_group_schemes}) is flat. More generally, if for some fixed base scheme $S$, $G$ is a group $X$-scheme for some $S$-scheme $X$ that is flat over $S$ and acts on $X$ via $\alpha: G \x_S X \to X$ then the associated action groupoid $\alpha, \pr_2: G \x_S X \toto X$ will also be flat.
+            \end{corollary}
+            \begin{proposition}[Differential forms on group schemes] \label{prop: differential_forms_on_group_schemes}
+                Let $(G, m, e, i)$ be a flat group scheme over a given scheme $S$ and that $\pi: G \to S$ is its structural morphism. 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+                
+    \subsection{Representations and cohomology of group schemes}
+        \subsubsection{Linear representations of group schemes}
+            \begin{definition}[Algebras, coalgebras, and bialgebras] \label{def: algebras_coalgebras_and_bialgebras} 
+                Let $(\calV, \tensor, \1)$ be a monoidal category. 
+                    \begin{itemize}
+                        \item \textbf{(Algebras):} A(n) (associative and unital) \textbf{algebra} $A$ internal to $\calV$ is a monoid object of $\calV$, i.e. one equipped with a so-called multiplication $\nabla: A \tensor A \to A$ and unit $\eta: \1 \to A$, which together satisfy the following commutative diagrams:
+                            $$
+                                \begin{tikzcd}
+                                	{A \tensor A \tensor A} & {A \tensor A} \\
+                                	{A \tensor A} & {A}
+                                	\arrow["{\id_A \tensor \nabla}"', from=1-1, to=2-1]
+                                	\arrow["{\nabla}", from=2-1, to=2-2]
+                                	\arrow["{\nabla \tensor \id_A}", from=1-1, to=1-2]
+                                	\arrow["{\nabla}", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                            $$
+                                \begin{tikzcd}
+                                	{\1 \tensor A} & {A \tensor A} \\
+                                	{A \tensor A} & {A}
+                                	\arrow["{\nabla}", from=1-2, to=2-2]
+                                	\arrow["{\nabla}", from=2-1, to=2-2]
+                                	\arrow["{\id_A \tensor \eta}"', from=1-1, to=2-1]
+                                	\arrow["{\eta \tensor \id_A}", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        \item \textbf{(Coalgebras):} A (coassociative and counital) \textbf{coalgebra} internal to $\calV$ is then a comonoid object of $\calV$, or in other words, an monoid object in $\calV^{\op}$. Typically, the so-called multiplication and counit maps on a coalgebra will be denoted by $\Delta$ and $\e$.
+                        \item \textbf{(Bialgebras):} A(n) (associative, coassociative, unital, and counital) \textbf{bialgebra} internal to $\calV$ is an object that is simultaneously an (associative and unital) algebra and a (coassociative and counital) coalgebra.
+                    \end{itemize}
+                Algebras, coalgebras, and bialgebras internal to a monoidal category $\calV$ form subcategories, which we will denote, respectively, by $\Assoc\Alg(\calV), \co\Assoc\Alg(\calV)$, and $\bi\Alg(\calV)$.
+            \end{definition}
+            \begin{convention}
+                Unless stated otherwise, every algebra shall be assumed to be associative and unital for now, and every coalgebra shall likewise be taken as being coassociative and counital. 
+            \end{convention}
+            \begin{definition}[(Co)commutativity] \label{def: (co)commutativity}
+                Suppose that $(\calV, \tensor, \1)$ is a monoidal category and that $A$ is an object equipped with a braiding $\tau_{A, A}: A \tensor A \to A \tensor A$. Should $A$ be an algebra $(A, \nabla, \eta)$, then it shall be \textbf{commutative} in the event that the following diagram commutes:
+                    $$
+                        \begin{tikzcd}
+                        	{A \tensor A} && {A \tensor A} \\
+                        	& A
+                        	\arrow["{\tau_{A, A}}", from=1-1, to=1-3]
+                        	\arrow["\nabla"', from=1-1, to=2-2]
+                        	\arrow["\nabla", from=1-3, to=2-2]
+                        \end{tikzcd}
+                    $$
+                Dually, a \textbf{cocommutative} coalgebra in $\calV$ is a commutative algebra in $\calV^{\op}$.
+            \end{definition}
+            \begin{definition}[Hopf algebras] \label{def: hopf_algebras}
+                Let $(\calV, \tensor, \1)$ be a monoidal category. Then, a bialgebra $(H, \nabla, \eta, \Delta, \e)$ is called a \textbf{Hopf algebra} if there exists a so-called \textbf{antipode} $\sigma: H \to H$ for which the following diagram commutes:
+                    $$
+                        \begin{tikzcd}
+                        	& {H \tensor H} && {H \tensor H} \\
+                        	{H} && {\1} && {H} \\
+                        	& {H \tensor H} && {H \tensor H}
+                        	\arrow["{\Delta}"', from=2-1, to=3-2]
+                        	\arrow["{\id_H \tensor \sigma}"', from=3-2, to=3-4]
+                        	\arrow["{\Delta}", from=2-1, to=1-2]
+                        	\arrow["{\sigma \tensor \id_H}", from=1-2, to=1-4]
+                        	\arrow["{\nabla}", from=1-4, to=2-5]
+                        	\arrow["{\nabla}"', from=3-4, to=2-5]
+                        	\arrow["{\e}", from=2-1, to=2-3]
+                        	\arrow["{\eta}", from=2-3, to=2-5]
+                        \end{tikzcd}
+                    $$
+                There is an obvious category of Hopf algebras internal to $\calV$, which we shall denote by $\Hopf\Alg(\calV)$.
+            \end{definition}
+            \begin{example}[Hopf algebra structures on global sections of group schemes] \label{example: hope_algebra_structures_on_global_sections_of_group_schemes}
+                Suppose that $S$ is a scheme, which can be taken to be some affine scheme $\Spec k$ without any loss of generality. In addition, suppose that $G$ is a group scheme over $\Spec k$. One sees that the global section $k[G]$ has a natural structure of a commutative Hopf algebra internal to the symmetric\footnote{Symmetry is important here, because it implies that every object is equipped with an invertible braiding.} monoidal category of $k$-modules. Furthermore, $k[G]$ is cocommutative if and only if $G$ is abelian. In fact, there are the following (monoidal) adjoint equivalences, compatible in the obvious manner:
+                    $$
+                        \begin{tikzcd}
+                        	{k\-\Comm\Hopf\Alg^{\op}} & {\Grp\Sch(\Spec k)}
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, "{\Spec }"', bend right, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', bend right, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+                    $$
+                        \begin{tikzcd}
+                        	{k\-\co\Comm\Comm\Hopf\Alg^{\op}} & {\Comm\Grp\Sch(\Spec k)}
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, "{\Spec }"', bend right, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', bend right, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+            \end{example}
+            
+            Let us now move on to discussing linear representations of affine group schemes, which we know to correspond to commutative Hopf algebras (cf. example \ref{example: hope_algebra_structures_on_global_sections_of_group_schemes}). In particular, linear representations of affine group schemes shall be considered as so-called \textbf{comodules} over commutative Hopf algebras, which is an interpretation of representations of group schemes that will be of tremendous usefulness later on when we wish to discuss the functoriality of representations with respect to group scheme homomorphisms, which can then be simply thought of as extensions and restrictions of scalars. 
+            
+            \begin{definition}[Equivariant monoidal categories] \label{def: equivariant_monoidal_categories}
+                Let $\calA$ and $\calV$ be monoidal categories. Then, the category $\calV^{\calA}$ of $\calA$-equivariant objects of $\calV$ is the category $\Mon\Func(\calA, \calV)$ of monoidal functors from $\calA$ into $\calV$.
+            \end{definition}
+            \begin{definition}[Linear representations of group schemes] \label{def: linear_representations_of_group_schemes}
+                Suppose that $S$ is a scheme and $G$ is a group scheme over $S$. Additionally, let $\calV$ be a triangulated monoidal category fibred over $(\Sch_{/S})_{\fppf}$ (which we note to also be monoidal). Then, the category of \textbf{$\calV$-valued representations of $G$} is 
+            \end{definition}
+            \begin{definition}[Modules and comodules] \label{def: modules_and_comodules}
+                Suppose that $(\calV, \tensor, \1)$ is a monoidal category. 
+                    \begin{itemize}
+                        \item \textbf{(Modules)} A \textbf{left-module} over an algebra\footnote{Again, assumed to be associative and unital unless specifically stated otherwise.} $(A, \nabla, \eta)$ (also known as a left-$A$-module) is an pair $(M, \lambda)$ consisting of an object $M \in \Ob(\calV)$ and a morphism $\lambda: A \tensor M \to M$ for which the following diagrams commute:
+                            $$
+                                \begin{tikzcd}
+                                	{A \tensor A \tensor M} & {A \tensor M} \\
+                                	{A \tensor M} & M
+                                	\arrow["{\id_A \tensor \lambda}"', from=1-1, to=2-1]
+                                	\arrow["\lambda", from=2-1, to=2-2]
+                                	\arrow["{\nabla \tensor \id_M}", from=1-1, to=1-2]
+                                	\arrow["\lambda", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                            $$
+                                \begin{tikzcd}
+                                	{1 \tensor M} & {A \tensor M} \\
+                                	& M
+                                	\arrow["{\eta \tensor \id_M}", from=1-1, to=1-2]
+                                	\arrow["\lambda", from=1-2, to=2-2]
+                                	\arrow[from=1-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        \item \textbf{(Comodules):} A \textbf{left-comodule} over a coalgebra $A$ is an object $M \in \Ob(\calV)$ which is a left-$A$-module in $\calV^{\op}$. 
+                    \end{itemize}
+                Give any (co)algebra object $A \in \Ob(\calV)$, there is an evident category of left $A$-(co)modules internal to $\calV$ in the above sense, which we denote by ${}^lA\mod$ (respectively, ${}^lA\comod$).
+            \end{definition}
+            \begin{proposition}
+                Suppose that $G$ is an affine group scheme over a commutative ring $k$. Then, $\Rep_k(G)$ shall be monoidal-equivalent to the category of $k[G]$-comodules internal to the monoidal category $k\mod$ of $k$-modules\footnote{Note that this definition makes sense since $k[G]$, by virtue of being a Hopf algebra object of the monoidal category $k\mod$, is a coalgebra internal to $k\mod$ \textit{a fortiori}.}.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            
+            In order to be able to effectively discuss linear representations of non-affine group schemes (i.e. those of group schemes instead of merely of constant abstract groups) in a manner mimicking the affine theory, a theory of equivariant quasi-coherent sheaves is needed, as we think of them as generalised linear-algebraic spaces upon which our group schemes shall act. In order to do this, we shall be making use of the fact that structure sheaves of group schemes have natural interpretations as Hopf algebra objects in order to consider equivariant quasi-coherent sheaves as comodules over these special bialgebra objects. 
+            
+        \subsubsection{Induced and restricted representations}
+        
+        \subsubsection{Cohomology of group schemes}
+        
+    \subsection{Algebraic Lie theory}
+        \subsubsection{Tangent spaces and Lie algebras}
+        
+        \subsubsection{Differential operators, distributions, and arithmetic Lie algebras}
+        
+        \subsubsection{Formal groups}
