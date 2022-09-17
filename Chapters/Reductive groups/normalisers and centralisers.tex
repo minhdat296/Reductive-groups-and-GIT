@@ -1,0 +1,133 @@
+\section{Preliminary constructions}
+    \subsection{Normalisers, centralisers, and quotients}
+        \subsubsection{Transporters and homomorphisms}
+            \begin{definition}[Adjoint actions] \label{def: adjoint_actions}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Adjoint actions of groups):} The \textbf{adjoint action} of a group $G$ on a subset $X \subseteq G$ is given by:
+                        $$\Ad_G: G \to \Aut(X)$$
+                        $$g \mapsto \left(\Ad_G(g): X \to X: x \mapsto gxg^{-1}\right)$$
+                    \item \textbf{(Adjoint actions of group schemes):} Suppose that $G$ is a group scheme over a given base scheme $S$ and that $i: X \hookrightarrow G$ is a monomorphism of $S$-schemes. The \textbf{adjoint action} of $G$ on $X$ is thus a natural transformation $\Ad_G: G \to \Aut(X/S)$ given by $\Ad_{G(T)}$ at each $T \in \Ob((\Sch_{/S})_{\fppf})$.
+                \end{enumerate}
+            \end{definition}
+            \begin{definition}[Kernels] \label{def: kernels_of_homomorphisms_of_group_schemes}
+                Suppose that $S$ is a scheme and that $\varphi: H \to G$ is a homomorphism of group presheaves on $(\Sch_{/S})_{\fppf}$. Then, thanks to the category of presheaves of groups on $(\Sch_{/S})_{\fppf}$ having all finite pullbacks\footnote{Which comes from the fact that $\Psh((\Sch_{/S})_{\fppf})$ has all (finite) pullbacks and that presheaves of groups on $(\Sch_{/S})_{\fppf}$ are defined internally via the monoidal structure on $\Psh((\Sch_{/S})_{\fppf})$ induced by binary products.} as well as initial objects $1_S$ (namely those isomorphic to $S$, as every group $S$-scheme is equipped with a uniquely defined identity morphism $e: S \to G$ by definition), one can define $\ker \varphi$ has the following pullback of presheaves of groups on $(\Sch_{/S})_{\fppf}$:
+                    $$
+                        \begin{tikzcd}
+                        	{\ker \varphi} & {1_S} \\
+                        	H & G
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow["\varphi", from=2-1, to=2-2]
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{remark}[Representability of automorphism groups of schemes] \label{remark: representability_of_automorphism_groups_of_schemes}
+                One reason that we needed the notion of kernels of homomorphisms of presheaves of groups on $\Psh((\Sch_{/S})_{\fppf})$ (with $S$ being some fixed base scheme) rather than the more concrete\footnote{Not that the two differ much from a categorical point of view.} notion of kernels of homomorphisms between group $S$-schemes is because it is not always guaranteed that for any $S$-scheme $X$, the automorphism group $\Aut(X/S)$ is representable by an $S$-scheme. 
+            \end{remark}
+            \begin{definition}[Normalisers] \label{def: normalisers}
+                Suppose that $S$ is a scheme, $G$ is a group $S$-scheme and $i: X \hookrightarrow G$ is a monomorphism of $S$-schemes. Then, the \textbf{normaliser} of $X$ inside $G$ (or rather, associated to the monomorphism $i: X \hookrightarrow G$), denoted by $\Norm_{G/S}(X)$, is the scheme-theoretic kernel $\ker \Ad_G$ of the adjoint action of $G$ on the subscheme $X$.
+            \end{definition}
+            \begin{definition}[Transporters] \label{def: transporters}
+                Suppose that $S$ is a scheme and $G$ is a group scheme over $S$. In addition, suppose that we are given two monomorphisms $i: X \hookrightarrow G$ and $j: Y \hookrightarrow G$ of $S$-schemes. The \textbf{transporter} from $X$ to $Y$ inside $G$ (or rather, from the monomorphism $i: X \hookrightarrow G$ to the monomorphism $j: Y \hookrightarrow G$) is thus the following pullback in the category of group $S$-schemes:
+                    $$
+                        \begin{tikzcd}
+                        	{\Transporter_{G/S}(X, Y)} & {\Norm_{G/S}(Y)} \\
+                        	{\Norm_{G/S}(X)} & G
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{remark}[Transporters and normalisers]
+                It is not hard to see that given a fixed group $S$-scheme $G$ and a fixed monomorphism $i: X \hookrightarrow G$, we have a natural isomorphism $\Norm_{G/S}(X) \cong \Transporter_{G/S}(X, X)$. 
+            \end{remark}
+            \begin{lemma}[Representability of automorphism groups of schemes] \label{lemma: representability_of_automorphism_groups_of_schemes}
+                
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[Representability of normalisers and transporters] \label{coro: representability_of_normalisers_and_transporteres}
+                Let $S$ be a scheme and $G$ be a group scheme over $S$. Then, the 
+            \end{corollary}
+                \begin{proof}
+                    
+                \end{proof}
+                
+        \subsubsection{Centralisers}
+        
+        \subsubsection{Quotients}
+        
+    \subsection{Groups of multiplicative type}
+        \subsubsection{Diagonalisability and split tori}
+            \begin{definition}[Diagonalisable group schemes] \label{def: diagonalisable_group_schemes}
+                Suppose that $\Lambda$ is a commutative group. Then, over a commutative ring $k$, one can define an associated (affine) group $k$-scheme $\Diag(\Lambda/k) \cong \Spec k\<\Lambda\>$, called the \textbf{diagonalisation} of $\Lambda$, by putting a cocommutative and commutative Hopf algebra structure on $k\<\Lambda\>$ via the comultiplication $\Delta(\lambda) := \lambda \tensor \lambda$, counit $\e(\lambda) := 1$, and antipode $\sigma(\lambda) = \lambda^{-1}$.
+                
+                A group scheme over $\Spec k$ that is isomorphic to one of the form $\Diag(\Lambda/k)$ is said to be \textbf{diagonalisable}\footnote{As we shall see, this is the same as requiring that diagonalisable group schemes be in the essential image of the functor $\Diag: \Comm\Grp \to \Grp\Sch(\Spec k)$.} over $\Spec k$, and in doing so one obtains a full subcategory $\Diag\Grp\Sch^{\aff}_{/\Spec k}$ spanned by diagonalisable group schemes over $\Spec k$.
+            \end{definition}
+            \begin{remark}
+                It should be noted that over non-affine bases, one can certainly construct diagonalisable non-affine group schemes. However, one does not lose any amount of generality by working over non-affine bases, so this is not an issue we will have to worry about. Nevertheless, we write the \say{$\aff$} superscript to put emphasis on this subtlety. Diagonalisable algebraic groups, as they are always defined over fields, will instead always be affine.
+            \end{remark}
+            \begin{remark}[Diagonalisable algebraic groups] \label{remark: diagonalisable_algebraic_groups}
+                Fix a commutative ring $k$. While it is rather obvious that there is a functor:
+                    $$\Diag: \Comm\Grp^{\op} \to \Diag\Grp\Sch^{\aff}_{/\Spec k}$$
+                    $$\Lambda \mapsto \Spec k\<\Lambda\>$$
+                coming from the fact that homomorphisms of group algebras one can actually say much more. For instance, it commutes with base-changes by construction: for every homomorphism between commutative rings $k \to k'$, one has:
+                    $$\Diag(\Lambda/k') \cong \Spec k'\<\Lambda\> \cong \Spec \left(k\<\Lambda\> \tensor_k k'\right) \cong \Spec k\<\Lambda\> \x_{\Spec k} \Spec k' \cong \Diag(\Lambda/k) \x_{\Spec k} \Spec k'$$
+                In addition, observe that if a given commutative group $\Lambda$ were to be finitely generated\footnote{Henceforth, we shall refer to finitely generated groups as groups of finite type so that the terminology will line up with those of modules and algebras.} (say, by $\lambda_1, ..., \lambda_n$) then its group $k$-algebra $k\<\Lambda\>$ would be of finite type as a (commutative) $k$-algebra by virtue of being isomorphic to $k[\lambda_1, ..., \lambda_n]$ (note that the variables $\lambda_1, ..., \lambda_n$ might not be $k[x_1, ..., x_n]$-linearly independent), which in turn implies that the associated diagonalisable group scheme $\Diag(\Lambda/k) \cong \Spec k\<\Lambda\>$ is of finite type over $\Spec k$; as a result, $\Diag(\Lambda/k)$ is an algebraic group over $\Spec k$ whenever $\Lambda$ is finitely generated (and of course, when $k$ is a field). Since algebraic groups form a full subcategory of the category of group schemes, the above analysis leads to a functor:
+                    $$\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp^{\aff}_{/\Spec k}$$
+                Of course, this functor also commutes with base-changes. 
+            \end{remark}
+            \begin{definition}[Characters] \label{def: characters_of_algebraic_groups}
+                The group of \textbf{characters} of an algebraic group $G$ over a given field $k$, commonly denoted by $\bbX(G/k)$, is the (commutative) group of homomorphisms $\chi: G \to \G_m$.
+            \end{definition}
+            \begin{proposition}[Pontryagin Duality for algebraic groups] \label{prop: pontryagin_duality_for_algebraic_groups}
+                For a fixed field $k$, the functor $\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp^{\aff}_{/\Spec k}$ is fully faithful and essentially surjective, with quasi-inverse given by the character functor\footnote{Which by definition is nothing but the representable functor $\Diag\Alg\Grp^{\aff}_{/\Spec k}(-, \G_m)$ (note that this is well-defined because $\G_m$ is diagonalisable as it is isomorphic to $\Spec k\<\Z\>$).}:
+                    $$\bbX: (\Diag\Alg\Grp^{\aff}_{/\Spec k})^{\op} \to \Comm\Grp^{\ft}$$
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[Diagonalisation is exact] \label{coro: diagonalisation_is_exact}
+                For a fixed field $k$, the functor:
+                    $$\Diag: (\Comm\Grp^{\ft})^{\op} \to \Diag\Alg\Grp^{\aff}_{/\Spec k}$$
+                is exact. 
+            \end{corollary}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[The Fundamental Theorem of Diagonalisable Algebraic Groups] \label{coro: the_fundamental_theorem_of_diagonalisable_algebraic_groups}
+                Suppose that $\Lambda$ is a commutative group of finite type which decomposes\footnote{By the Fundamental Theorem of Finitely Generated Abelian Groups} into free and torsion factors as follows (note that we are supposing that $\rank_{\Z} \Lambda = r$):
+                    $$\Lambda \cong \Z^{\oplus r} \oplus \bigoplus_{i = 1}^s (\Z/p_i\Z)^{\oplus e_i}$$
+                wherein $p_1, ..., p_s$ are certain primes and $e_i$ are positive integer exponents. In addition, fix a field $k$. Then, by exactness, the diagonalisable algebraic group $\Diag(\Lambda/k)$ decomposes as:
+                    $$\Diag(\Lambda/k) \cong \Diag(\Z/k)^r \x_{\Spec k} \prod_{i = 1}^s \Diag((\Z/p_i\Z)/k)^{e_i} \cong \G_m^r \x_{\Spec k} \prod_{i = 1}^s \mu_{p_i}^{e_i}$$
+            \end{corollary}
+            
+            \begin{definition}[Algebraic tori] \label{def: algebraic_tori}
+                An \textbf{algebraic torus} over a given field $k$ is a commutative algebraic group scheme $T$ over $\Spec k$, such that $T_{\bar{k}}$ (for some choice of algebraic closure $\bar{k}/k$) is diagonalisable as a commutative algebraic group scheme over $\Spec \bar{k}$.
+            \end{definition}
+            \begin{remark}
+                By corollary \ref{coro: the_fundamental_theorem_of_diagonalisable_algebraic_groups} and the fact that algebraic groups are of finite type over their base fields by definition, one sees that an algebraic torus $T$ over a given field $k$ is equivalently an algebraic group over $\Spec k$ such that $T_{\bar{k}} \cong (\G_m)_{\bar{k}}^r$, where $\bar{k}/k$ is an algebraic closure and $r$ is a positive integer.  
+            \end{remark}
+            
+        \subsubsection{Group schemes of multiplicative type}
+            \begin{definition}[Group schemes of multiplicative type] \label{def: group_schemes_of_multiplicative_type}
+                Let $S$ be a scheme and $G$ be a group scheme over $S$. We say that $G$ is of \textbf{multiplicative type} if fpqc-locally, it is diagonalisable.     
+            \end{definition}
+            
+        \subsubsection{Classification of group shcemes of multiplicative type}
+        
+    \subsection{Maximal tori, Weyl groups, and Cartan subgroups}
+        \subsubsection{Maximal tori}
+        
+        \subsubsection{Weyl groups}
+        
+        \subsubsection{Cartan subgroups}
+                
+    \subsection{Unipotent group schemes}
