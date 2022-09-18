@@ -10,20 +10,6 @@
                     \item \textbf{(Adjoint actions of group schemes):} Suppose that $G$ is a group scheme over a given base scheme $S$ and that $i: X \hookrightarrow G$ is a monomorphism of $S$-schemes. The \textbf{adjoint action} of $G$ on $X$ is thus a natural transformation $\Ad_G: G \to \Aut(X/S)$ given by $\Ad_{G(T)}$ at each $T \in \Ob((\Sch_{/S})_{\fppf})$.
                 \end{enumerate}
             \end{definition}
-            \begin{definition}[Kernels] \label{def: kernels_of_homomorphisms_of_group_schemes}
-                Suppose that $S$ is a scheme and that $\varphi: H \to G$ is a homomorphism of group presheaves on $(\Sch_{/S})_{\fppf}$. Then, thanks to the category of presheaves of groups on $(\Sch_{/S})_{\fppf}$ having all finite pullbacks\footnote{Which comes from the fact that $\Psh((\Sch_{/S})_{\fppf})$ has all (finite) pullbacks and that presheaves of groups on $(\Sch_{/S})_{\fppf}$ are defined internally via the monoidal structure on $\Psh((\Sch_{/S})_{\fppf})$ induced by binary products.} as well as initial objects $1_S$ (namely those isomorphic to $S$, as every group $S$-scheme is equipped with a uniquely defined identity morphism $e: S \to G$ by definition), one can define $\ker \varphi$ has the following pullback of presheaves of groups on $(\Sch_{/S})_{\fppf}$:
-                    $$
-                        \begin{tikzcd}
-                        	{\ker \varphi} & {1_S} \\
-                        	H & G
-                        	\arrow[from=1-2, to=2-2]
-                        	\arrow["\varphi", from=2-1, to=2-2]
-                        	\arrow[from=1-1, to=2-1]
-                        	\arrow[from=1-1, to=1-2]
-                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                        \end{tikzcd}
-                    $$
-            \end{definition}
             \begin{remark}[Representability of automorphism groups of schemes] \label{remark: representability_of_automorphism_groups_of_schemes}
                 One reason that we needed the notion of kernels of homomorphisms of presheaves of groups on $\Psh((\Sch_{/S})_{\fppf})$ (with $S$ being some fixed base scheme) rather than the more concrete\footnote{Not that the two differ much from a categorical point of view.} notion of kernels of homomorphisms between group $S$-schemes is because it is not always guaranteed that for any $S$-scheme $X$, the automorphism group $\Aut(X/S)$ is representable by an $S$-scheme. 
             \end{remark}

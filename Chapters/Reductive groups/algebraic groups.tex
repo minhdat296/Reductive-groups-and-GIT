@@ -359,6 +359,20 @@
                 \begin{proof}
                     
                 \end{proof}
+            \begin{definition}[Kernels] \label{def: kernels_of_homomorphisms_of_group_schemes}
+                Suppose that $S$ is a scheme and that $\varphi: H \to G$ is a homomorphism of group presheaves on $(\Sch_{/S})_{\fppf}$. Then, thanks to the category of presheaves of groups on $(\Sch_{/S})_{\fppf}$ having all finite pullbacks\footnote{Which comes from the fact that $\Psh((\Sch_{/S})_{\fppf})$ has all (finite) pullbacks and that presheaves of groups on $(\Sch_{/S})_{\fppf}$ are defined internally via the monoidal structure on $\Psh((\Sch_{/S})_{\fppf})$ induced by binary products.} as well as initial objects $1_S$ (namely those isomorphic to $S$, as every group $S$-scheme is equipped with a uniquely defined identity morphism $e: S \to G$ by definition), one can define $\ker \varphi$ has the following pullback of presheaves of groups on $(\Sch_{/S})_{\fppf}$:
+                    $$
+                        \begin{tikzcd}
+                        	{\ker \varphi} & {1_S} \\
+                        	H & G
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow["\varphi", from=2-1, to=2-2]
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
             \begin{corollary}[First Isomorphism Theorem for linear algebraic groups] \label{coro: first_isomorphism_theorem_for_linear_algebraic_groups}
                 Let $k$ be an algebraically closed field and let $f: G' \to G$ be a homomorphism of smooth linear algebraic groups over $\Spec k$. Then there is an isomorphism of $k$-schemes:
                     $$G'/\ker f \cong \im f$$
@@ -372,15 +386,6 @@
                 \begin{proof}
                     
                 \end{proof}
-            \begin{example}
-                Let $k$ be an algebraically closed field and $n$ be a positive integer. The naturally induced morphism of group $k$-schemes:
-                    $$\pi: (\SL_n)_k \to (\PGL_n)_k$$
-                is surjective (on $k$-points and hence as morphism of $k$-schemes by \'etale descent) and has kernel:
-                    $$\ker \pi \cong (\mu_n)_k$$
-                (where $(\mu_n)_k$ denotes the group of $n^{th}$ roots of unity over $\Spec k$), which is of degree $n$ over $\Spec k$, so $\pi: (\SL_n)_k \to (\PGL_n)_k$ will be finite of degree $n$ and flat over $\Spec k$ by proposition \ref{prop: monomorphisms_between_linear_algebraic_groups}. Now, if $\chara k = p$ for some prime $p$ and $n = p$ then because:
-                    $$(\mu_n)_k \cong \Spec k[z]/(z^p - 1)$$
-                
-            \end{example}
                 
     \subsection{Representations and cohomology of group schemes}
         \subsubsection{Linear representations of group schemes}
