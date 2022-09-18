@@ -327,6 +327,61 @@
                     
                 \end{proof}
                 
+        \subsubsection{Epi-mono factorisations for linear algebraic groups}
+            \begin{definition}[Scheme-theoretic images] \label{def: scheeme_theoretic_images}
+                Let $f: Y \to X$ be a morphism of schemes. Then the category $({}^{Y/}\Sch_{/X})_{\closed}$ of commutative triangles:
+                    $$
+                        \begin{tikzcd}
+                        	& Y \\
+                        	Z & X
+                        	\arrow["f", from=1-2, to=2-2]
+                        	\arrow["", hook, from=2-1, to=2-2]
+                        	\arrow[""', from=1-2, to=2-1]
+                        \end{tikzcd}
+                    $$
+                wherein $Z \hookrightarrow X$ is a closed immersion (i.e. the category of $X$-schemes under $Y$ and closed immersions between them) has an initial object $\im f$ (cf. \cite[\href{https://stacks.math.columbia.edu/tag/01R6}{Tag 01R6}]{stacks}), which we call the \textbf{scheme-theoretic image} of the given morphism $f: Y \to X$. We might also write $f(Y)$ instead of $\im f$.
+            \end{definition}
+            \begin{proposition}[Morphisms surject onto images] \label{prop: morphisms_surject_onto_images}
+                Let $f: Y \to X$ be a morphism of schemes. Then $\im f: Y \to f(Y)$ is surjective.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{lemma}[The Closed Orbit Lemma] \label{lemma: the_closed_orbit_lemma}
+                Let $k$ be an algebraically closed field and let $f: G' \to G$ be a homomorphism of smooth linear algebraic groups over $\Spec k$. Then the image $f(G')$ will be a smooth closed subgroup $k$-scheme of $G$.
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[Surjections onto images of linear algebraic group homomorphisms are faithfully flat] \label{prop: surjections_onto_images_of_linear_algebraic_group_homomorphisms_are_faithfully_flat}
+                Let $k$ be an algebraically closed field and let $f: G' \to G$ be a homomorphism of smooth linear algebraic groups over $\Spec k$. Then $\im f: G' \to f(G')$ is faithfully flat. 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{corollary}[First Isomorphism Theorem for linear algebraic groups] \label{coro: first_isomorphism_theorem_for_linear_algebraic_groups}
+                Let $k$ be an algebraically closed field and let $f: G' \to G$ be a homomorphism of smooth linear algebraic groups over $\Spec k$. Then there is an isomorphism of $k$-schemes:
+                    $$G'/\ker f \cong \im f$$
+            \end{corollary}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[Monomorphisms between linear algebraic groups] \label{prop: monomorphisms_between_linear_algebraic_groups}
+                Let $k$ be an algebraically closed field and let $f: G' \to G$ be a homomorphism of smooth linear algebraic groups over $\Spec k$. If $\ker f$ is finite over $\Spec k$ then $\im f: G' \to f(G')$ will be finite flat. In particular, if $\ker f$ is trivial then $f: G' \to G$ will be a closed immersion; if $f: G' \to G$ is also surjective and $\ker f$ is trivial then $f$ will be an isomorphism of group $k$-schemes.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{example}
+                Let $k$ be an algebraically closed field and $n$ be a positive integer. The naturally induced morphism of group $k$-schemes:
+                    $$\pi: (\SL_n)_k \to (\PGL_n)_k$$
+                is surjective (on $k$-points and hence as morphism of $k$-schemes by \'etale descent) and has kernel:
+                    $$\ker \pi \cong (\mu_n)_k$$
+                (where $(\mu_n)_k$ denotes the group of $n^{th}$ roots of unity over $\Spec k$), which is of degree $n$ over $\Spec k$, so $\pi: (\SL_n)_k \to (\PGL_n)_k$ will be finite of degree $n$ and flat over $\Spec k$ by proposition \ref{prop: monomorphisms_between_linear_algebraic_groups}. Now, if $\chara k = p$ for some prime $p$ and $n = p$ then because:
+                    $$(\mu_n)_k \cong \Spec k[z]/(z^p - 1)$$
+                
+            \end{example}
+                
     \subsection{Representations and cohomology of group schemes}
         \subsubsection{Linear representations of group schemes}
             \begin{definition}[Algebras, coalgebras, and bialgebras] \label{def: algebras_coalgebras_and_bialgebras} 
